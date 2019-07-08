@@ -12,13 +12,13 @@
 </head>
 <body onload="viewProfile()">
     <form method="POST" name="profile">
-        
+        <img src="images/default.png" alt="default" height="60px" width="60px" id="profile_picture"><br /><br />
+        <input type="file" id="changePic" onchange="changeProfilePicture();"disabled><br /><br />
         First Name <input type="text" placeholder="Enter first name"  id="fname"disabled><br/><br/>
         Last Name <input type="text" placeholder="Enter last name" id="lname" disabled><br/><br />
         Gender <input type="radio" name="gender" id="radio" value="Male" disabled> Male
-               <input type="radio" name="gender" id="radio" value="Female" disabled> Female<br /><br />
+               <input type="radio" name="gender" id="radio1" value="Female" disabled> Female<br /><br />
         Address <textarea placeholder="Enter address" rows="5" cols="20" id="Address" disabled ></textarea><br /><br />
-        <!-- Update Profile image<input type="file" id="profile-picture"><br /><br /> -->
         <input type="button" value="Update Profile" onclick=edit()>
         <input type="button" value="Save" onclick=save()>
 
