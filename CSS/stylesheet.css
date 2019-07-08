@@ -1,0 +1,67 @@
+*{
+    background-color: #4444ff;
+    margin:0 auto;
+}
+.center{
+    margin:0 auto;
+    border:2px solid #000;
+}
+form {
+    padding-top: 10px;
+    text-align: center;
+    color:#fff;
+}
+h1{
+    text-align: center;
+    font-weight: 900;
+    color :#fff;
+}
+textarea{
+    background-color: #fff;
+
+}
+input{
+    background-color: #fff;
+}
+button{
+    padding-bottom: 2px;
+    background-color: #fff;
+}
+.profile{
+    float: right;
+    margin-top:10px;
+    margin-right: 10px;
+}
+#categories{
+    background-color: #fff;
+    margin-left:10px;
+}
+#due-date{
+    margin-left: 10px;
+}
+table, tbody, td{
+    color: #fff;
+    margin: auto;
+}
+#filterbycategories{
+    background-color: #fff;
+    margin-left:10px;
+}
+#office{
+    background-color: #fff;
+}
+#personal{
+    background-color: #fff;
+}
+#select {
+    background-color: #fff;
+}
+#female{
+    background-color: #fff;
+}
+#male{
+    background-color: #fff;
+}
+#gender{
+    background-color: #fff;
+}

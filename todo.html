@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CSS/normalize.css" />
+        <link rel="stylesheet" href="CSS/reset.css" />
+        <link rel="stylesheet" href="CSS/stylesheet.css" />
+        <script src="JS Files/todo.js"></script>
+        <script src="JS Files/todooperation.js"></script>
+        <script src="JS Files/login.js"></script>
+        <title>To Do </title>
+    </head>
+    <body onload="filter();">
+    <div class=center>
+        <h1>My To Do List</h1>
+        <form method="POST" name="todo">
+            Description<input type="text" placeholder="Enter todo list" id="description"><br /><br />
+        <input type="button" value="Logout" class="profile" onclick="onSubmit()">
+        <input type="button"  value="Profile" class="profile" onclick="viewprofile()">
+            Category
+            <select name="categories" value="Select Category" id="categories"required>&nbsp;
+                <option  id="select">Select Category</option>
+                <option  value="Personal" id="personal">Personal</option>
+                <option  value="Office" id="office">Office</option>
+            </select><br /><br />
+            is Public <input type ="radio" name="chooseone" value="Public" id="radio">Yes 
+                      <input type ="radio" name="chooseone"  value="Private" id="radio">No  <br /><br />
+            
+            Due Date <input type="date" name="date" id="due_date"required><br /><br />
+            Reminder<input type="date" name="date" id="reminder"required><br /><br />
+            <ul id="myUL"></ul>
+            <input type="button" value="Add" id="Add" onclick="newElement()">
+            
+            <input type="button" value="Delete" onclick="onDelete()">
+        </form>
+<form method="POST">
+    Filter By Category
+    <select name="categories" value="Select Category" id="filterbycategories" onchange="filter()">
+        <option  value="Category">Select Category</option>
+        <option  value="Personal" id="personal">Personal</option>
+        <option value="Office" id="office">Office</option>
+    </select>
+    <input type="date" id="sdate" value="sdate" onchange="filterbyDate()"/>
+    <input type="date" id="edate" value="edate" onchange="filterbyDate()"/>
+    Filter by Status
+    <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
+        <option value="Status">Select Status</option>
+        <option value="Pending" id="pending">Pending</option>
+        <option value="Done" id="Done">Done</option>
+    </select>
+
+</form>
+    <table id="todo_table" width="50%">
+        <thead id ="table_head">
+            <tr>
+                <td>Select</td>
+                <td>Description</td>
+                <td>Category</td>
+                <td>DueDate</td>
+                <td>Reminder</td>
+                <td>isPublic</td>
+                <td>isDone</td>
+            </tr>
+        </thead>
+        <tbody id="table_body" ></tbody>
+    </table>
+</form>
+</div>
+</body>
+</html>

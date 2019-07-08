@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="CSS/reset.css">
+    <link rel="stylesheet" href="CSS/normalize.css">
+    <link rel="stylesheet" href="CSS/stylesheet.css">
+    <script src="JS Files/profile.js"></script>
+    <title>Profile</title>
+</head>
+<body onload="viewProfile()">
+    <form method="POST" name="profile">
+        
+        First Name <input type="text" placeholder="Enter first name"  id="fname"disabled><br/><br/>
+        Last Name <input type="text" placeholder="Enter last name" id="lname" disabled><br/><br />
+        Gender <input type="radio" name="gender" id="radio" value="Male" disabled> Male
+               <input type="radio" name="gender" id="radio" value="Female" disabled> Female<br /><br />
+        Address <textarea placeholder="Enter address" rows="5" cols="20" id="Address" disabled ></textarea><br /><br />
+        <!-- Update Profile image<input type="file" id="profile-picture"><br /><br /> -->
+        <input type="button" value="Update Profile" onclick=edit()>
+        <input type="button" value="Save" onclick=save()>
+
+    </form>
+</body>
+</html>
