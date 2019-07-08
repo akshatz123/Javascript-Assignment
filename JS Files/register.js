@@ -4,7 +4,7 @@ var uname = '';
 var fname = '';
 var gender = '';
 var address = '';
-// var image ='';
+var image =sessionStorage.getItem("tempimgdata");
 function check_for_blank(){
     if ((pwd = document.login.pass.value)==''){
         document.getElementById('pass').style.borderColor="red";
@@ -12,9 +12,6 @@ function check_for_blank(){
     if ((fname=  document.login.fname.value)==''){
         document.getElementById('fname').style.borderColor="red";
     }
-    // if((image = document.getElementById("profile_picture").value) == ''){
-    //     document.getElementById("profile_picture").style.borderColor = 'red';
-    // }
     if ((uname=  document.login.uname.value) ==''){
         document.getElementById('uname').style.borderColor="red";
     }
@@ -27,7 +24,7 @@ function check_for_blank(){
     if ((address=  document.login.address.value) ==''){
         document.getElementById('address').style.borderColor="red";
     }
-    if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''){//||image==''){
+    if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''){
         return false;
     }
     //Gender selection
@@ -82,13 +79,13 @@ function check_for_blank(){
         "FirstName" :   fname,
         "Address":  address,
         "Password":    pass.value,
-        "Gender":   gender,
-        // "image": image,
-        "Username":    uname,
-        "LastName" :   lname,
+        "gender":   gender,
+        "Image": image,
+        "Username": uname,
+        "LastName" : lname,
         "ToDO": []
         };
-   // console.log(localStorage.getItem("userDetails"));
+   console.log(localStorage.getItem("userDetails"));
     if (localStorage.getItem("userDetails")) {
         userDetails = JSON.parse(localStorage.getItem("userDetails"));
         var isUserExists = false;
@@ -119,6 +116,23 @@ function check_for_blank(){
     }
 }
 
+
+//profile picture
+function changeProfilePicture(){
+    var Image =document.getElementById("changePic").files[0];
+    getimgbase64(Image);
+    function getimgbase64(Image){
+        var reader = new FileReader();
+        reader.readAsDataURL(Image);
+        reader.onload = function () {
+        var imgdata =reader.result;
+        sessionStorage.setItem("tempimgdata",imgdata);
+        document.getElementById("profile_picture").src=sessionStorage.tempimgdata;
+        }
+    }
+}
+
+// on click Registration
 function registration(){
     if (check_for_blank()){
         // alert("Successfully Registered");
@@ -128,12 +142,3 @@ function registration(){
         alert('Something went wrong');
     }
 }
-//profile picture
-function encodeImageFileAsURL(element) {
-    var file = element.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function() {
-      console.log('RESULT', reader.result)
-    }
-    reader.readAsDataURL(file);
-  }

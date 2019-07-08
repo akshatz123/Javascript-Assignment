@@ -23,11 +23,11 @@ function edit(IdofElement){
   var index, todoid;
   for(var index = 0; index < todo_array.length; index++){
     if(todo_array[index].TodoId == IdofElement){
-      var todoid = index;
-      alert(todoid);
+      todoid = index;
+      // alert(todoid);
       document.getElementById("description").value = todo_array[index].Description;
       document.getElementById("categories").value = todo_array[index].Categories;
-      document.getElementById("due_date").value = todo_array[index].due_date;
+      document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
       break;
     }
@@ -49,14 +49,14 @@ function save(IdofElement){
     }
 
     todo_array[todoid].Description =document.getElementById("description").value;
-      todo_array[todoid].Categories =document.getElementById("categories").value;
-      todo_array[todoid].Due_Date = document.getElementById("due_date").value;
-      todo_array[todoid].Reminder = document.getElementById("reminder").value;
-      console.log(todo_array[todoid].TodoId);
-      user_array = JSON.stringify(user_array);
-      localStorage.setItem('userDetails',user_array);
-      // window.location.reload();
-      window.location ='todo.html';
+    todo_array[todoid].Categories =document.getElementById("categories").value;
+    todo_array[todoid].Due_Date = document.getElementById("due_date").value;
+    todo_array[todoid].Reminder = document.getElementById("reminder").value;
+    console.log(todo_array[todoid].TodoId);
+    user_array = JSON.stringify(user_array);
+    localStorage.setItem('userDetails',user_array);
+    // window.location.reload();
+    window.location ='todo.html';
    }    
 
 //Filter By Category
@@ -137,9 +137,3 @@ function done(IdofElement){
   localStorage.setItem('userDetails',user_array);
   window.location.reload();
   }
-  // for (var i = 0, length = radios.length; i < length; i++){
-  //  if (radios[i].checked){
-  //   alert(radios[i].value);
-  //   break;
-  //  }
-  // }
