@@ -1,20 +1,17 @@
 var user_array = JSON.parse(localStorage.getItem("userDetails"));
 var session = sessionStorage.user;
-var input = document.createElement("input");
-input.setAttribute("type", "checkbox");
-input.setAttribute("class", "selectedcheckbox");
-var todo_array = user_array[userid].ToDO;
-
 var status ="Pending"; 
+
 for(var index = 0; index < user_array.length; index++)
 {
-  var todoList= user_array[index].ToDO;
-  if(session == user_array[index].Username)   // username found then break
+  if(session == user_array[index].userName)   // username found then break
   {
     userid = index;
+    var todo_array = user_array[userid].ToDO;
     break;
   }
 }
+
 
 
 //Edit ToDo
@@ -33,8 +30,6 @@ function edit(IdofElement){
     }
     }  
 }
-
-// }
 
 //Save ToDO
 function save(IdofElement){
@@ -87,7 +82,6 @@ function filterByStatus(){
  else if(document.getElementById("filterbystatus").value === "Pending")
   {  
     var today = new Date();
-    
     var filteredArrayByStatus= todo_array.filter(function(searchstatus){
       return ((searchstatus.isDone === "Pending") && (new Date(searchstatus.Due_Date) >= today));
     })

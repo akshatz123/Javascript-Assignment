@@ -41,7 +41,8 @@ function check_for_blank(){
 
     // Firstname Validation
     fname =document.getElementById('fname').value;
-    var name_regex ='[a-zA-z]';
+    // var name_regex ='[a-zA-z]';
+var name_regex = '^[a-zA-Z]+$';
     var fname_result= fname.match(name_regex);
     if(!(fname_result)){
         document.getElementById("fname").style.borderColor= "Red";
@@ -58,7 +59,7 @@ function check_for_blank(){
 
     //password validation
     pwd=document.getElementById('pass').value;
-    // var passwdregex='^[0-9a-zA-Z@#$%\/^&+=]$';
+
     var passwdregex ='[a-zA-Z0-9|\W].{6,}';
     var password_result = pwd.match(passwdregex);
     if(!(password_result)){
@@ -68,7 +69,8 @@ function check_for_blank(){
 
     //username validation
     var user =document.getElementById('uname').value;
-    var userreg = "[A-Za-z]";
+    // var userreg = "[A-Za-z]";
+    var userreg = '^[A-Za-z]+$';
     var userresult = user.match(userreg);
     if(!(userresult)){
         document.getElementById("uname").style.borderColor= "Red";
@@ -76,13 +78,13 @@ function check_for_blank(){
     }
     var userDetails=new Array();
     var obj = {
-        "FirstName" :   fname,
-        "Address":  address,
-        "Password":    pass.value,
+        "firstName" :   fname,
+        "address":  address,
+        "password":    pass.value,
         "gender":   gender,
         "Image": image,
-        "Username": uname,
-        "LastName" : lname,
+        "userName": uname,
+        "lastName" : lname,
         "ToDO": []
         };
    console.log(localStorage.getItem("userDetails"));
@@ -95,7 +97,6 @@ function check_for_blank(){
                 isUserExists = true;
             }
         }
-
         if (isUserExists) {
            alert('user with same name already exists.');
             document.getElementById('uname').value='';

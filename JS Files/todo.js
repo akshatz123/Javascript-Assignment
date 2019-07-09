@@ -1,12 +1,11 @@
-var  user_name, user, duedate, reminder, categories, isPublic;
+var  user_name, user, duedate, reminder, categories, isPublic, todoObj;
+var user_array = JSON.parse(localStorage.getItem("userDetails"));
 var user_array = JSON.parse(localStorage.getItem("userDetails"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
 var session = sessionStorage.user;
 
-for(var index = 0; index < user_array.length; index++)
-{
-  if(session == user_array[index].Username)   // username found then break
+for(var index = 0; index < user_array.length; index++){
+  if(session == user_array[index].userName)   // username found then break
   {
     var userid =index;
     break;
@@ -14,14 +13,27 @@ for(var index = 0; index < user_array.length; index++)
 }
 //Add function
 function newElement() {
-    var description= document.getElementById("description").value;
-    var reminder= document.getElementById("reminder").value;
-    var Due_Date=document.getElementById("due_date").value;
-    var categories=document.getElementById("categories").value;
-    var todoid=new Date().getTime();
-    var isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
-    var pending = document.getElementById("pending").value;
-    var todoObj = {
+    description= document.getElementById("description").value;
+    if(description==''){
+      document.getElementById("description").style.borderColor = "red";
+      return false;
+    }
+    reminder= document.getElementById("reminder").value;
+    if(reminder == ''){
+      document.getElementById("reminder").style.borderColor = "red";
+    }
+    Due_Date=document.getElementById("due_date").value;
+    if(Due_Date == ''){
+      document.getElementById("due_date").style.borderColor ="red";
+    }
+    categories=document.getElementById("categories").value;
+    if(categories == ''){
+      document.getElementById("categories").style.borderColor ="red";
+    }
+    todoid=new Date().getTime();
+    isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
+    pending = document.getElementById("pending").value;
+    todoObj = {
       "TodoId" : todoid,
       "Description" : description,
       "Reminder" : reminder,
@@ -37,7 +49,7 @@ function newElement() {
   
   for(var i = 0; i < user_array.length; i++)
   {
-    if(user_name == user_array[i].Username)   // username found then break
+    if(user_name == user_array[i].userName)   // username found then break
     {
       user_array[i].ToDO.push(todoObj);
       break;
@@ -45,7 +57,7 @@ function newElement() {
   }
   localStorage.setItem("userDetails",JSON.stringify(user_array));
 }
-  function getRadioVal(todo,name) {
+  function getRadioVal() {
     if(document.getElementsByName("radio").values === "Public"){
       isPublic = "Public";
       }
@@ -111,3 +123,11 @@ function onSubmit(){
 function viewprofile(){
   window.location.href='profile.html';
 }
+
+// Immidiately Invoked function expression
+(function (){
+  if(sessionStorage.getItem("user") === null ){
+      window.location.href = "login.html";
+      alert("Please login again to view your todo.");
+  }
+})();
