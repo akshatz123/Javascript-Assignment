@@ -22,7 +22,7 @@ function getRadioVal() {
 function edit(){
     document.getElementById("fname").disabled = false;
     document.getElementById("lname").disabled = false;
-    document.getElementById("Address").disabled = false;
+    document.getElementById("address").disabled = false;
     // document.getElementById("profile_picture").disabled = false;
     document.getElementsByName("gender").disabled = false;     
     for(let i=0;i<(document.getElementsByName("gender").length);i++)
@@ -34,28 +34,20 @@ function edit(){
 
 function save(){
     for(index = 0; index < todo_array.length; index++){
-    if(sessionStorage.user == todo_array[index].Username){
-        todo_array[index].FirstName = document.getElementById("fname").value;
-        todo_array[index].LastName = document.getElementById("lname").value;
-        todo_array[index].Address = document.getElementById("Address").value;
-        // todo_array[index].Gender = document.getElementsByName("gender").values;
-        // getRadioVal();
+    if(sessionStorage.user == todo_array[index].userName){
+        todo_array[index].firstName = document.getElementById("fname").value;
+        todo_array[index].lastName = document.getElementById("lname").value;
+        todo_array[index].address = document.getElementById("address").value;
         for(let i=0;i<(document.getElementsByName("gender").length);i++)
         {
             if (document.getElementsByName("gender")[i].checked) {
                 todo_array[index].gender = document.getElementsByName("gender")[i].value;
             }
         }
-        // if(document.getElementById("radio").value =="Male"){
-        //     document.getElementById("radio").checked = true;
-        // }
-        // else if(document.getElementById("radio1").value =="Female"){
-        //     document.getElementById("radio1").checked =true;
-        // }
-        todo_array[index].image = img;
+        todo_array[index].Image = img;
         user_array = JSON.stringify(user_array);
-        localStorage.setItem('userDetails',user_array);
-        window.location.reload();
+        localStorage.setItem("userDetails",user_array);
+        window.location.href ="todo.html";
         }   
     }    
 }
@@ -63,10 +55,10 @@ function save(){
 //view profile
 function viewProfile(){
     for(index = 0; index < profile1.length; index++){
-        if(sessionStorage.user == todo_array[index].Username){
-            document.getElementById("fname").value = profile1[index].FirstName;
-            document.getElementById("lname").value = profile1[index].LastName;
-            document.getElementById("Address").value = profile1[index].Address;
+        if(sessionStorage.user == todo_array[index].userName){
+            document.getElementById("fname").value = profile1[index].firstName;
+            document.getElementById("lname").value = profile1[index].lastName;
+            document.getElementById("address").value = profile1[index].address;
             document.getElementById("profile_picture").value =profile1[index].image;
             radioArr =document.getElementsByName("gender");
             if(radioArr[0].value == "Male" && profile1[index].gender === 'Male' ){
@@ -95,4 +87,10 @@ function changeProfilePicture()
     }
 }
 
-        
+// Immidiately Invoked function expression
+(function (){
+    if(sessionStorage.getItem("user") === null ){
+        window.location.href = "login.html";
+        alert("Please login again to view your profile.");
+    }
+})();
