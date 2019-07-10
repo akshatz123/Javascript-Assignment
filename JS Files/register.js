@@ -6,23 +6,36 @@ var gender = '';
 var address = '';
 var image =sessionStorage.getItem("tempimgdata");
 function check_for_blank(){
+    if ((uname=  document.login.uname.value) ==''){
+        alert("Please enter your username and it should consist of only alphabets");
+        document.getElementById('uname').style.borderColor="red";
+        return false;
+    }
     if ((pwd = document.login.pass.value)==''){
+        alert("Please enter the password again and it should consist of an alphabet, a number and a special character");
         document.getElementById('pass').style.borderColor="red";
+        return false;
     }
     if ((fname=  document.login.fname.value)==''){
+        alert("Please enter your first name and it should consist of only alphabets");
         document.getElementById('fname').style.borderColor="red";
+        return false;
     }
-    if ((uname=  document.login.uname.value) ==''){
-        document.getElementById('uname').style.borderColor="red";
-    }
+    
     if ((lname = document.login.lname.value) ==''){
+        alert("Please enter your last name and it should consist of only alphabets");
         document.getElementById('lname').style.borderColor="red";
+        return false;
     }
     if((gender=  document.getElementById("radio").name) ==''){
+        alert("Please enter the gender");
         document.getElementById('radio').style.borderColor="red";
+        return false;
     }
     if ((address=  document.login.address.value) ==''){
+        alert("Please enter your address again.");
         document.getElementById('address').style.borderColor="red";
+        return false;
     }
     if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''){
         return false;
@@ -31,9 +44,8 @@ function check_for_blank(){
     gender=document.querySelector('input[name="gender"]:checked').value
     
     //Address Validation
-    var address_regex= '^[#.0-9a-zA-Z\s,-]+$';
     var add =document.getElementById('address').value;
-    var address_result=add.match(address_regex);
+    var address_result=add;
     if(!(address_result)){
         document.getElementById("address").style.borderColor= "Red";
         return false;
@@ -41,8 +53,7 @@ function check_for_blank(){
 
     // Firstname Validation
     fname =document.getElementById('fname').value;
-    // var name_regex ='[a-zA-z]';
-var name_regex = '^[a-zA-Z]+$';
+    var name_regex = '^[a-zA-Z]+$';
     var fname_result= fname.match(name_regex);
     if(!(fname_result)){
         document.getElementById("fname").style.borderColor= "Red";
@@ -59,7 +70,6 @@ var name_regex = '^[a-zA-Z]+$';
 
     //password validation
     pwd=document.getElementById('pass').value;
-
     var passwdregex ='[a-zA-Z0-9|\W].{6,}';
     var password_result = pwd.match(passwdregex);
     if(!(password_result)){
@@ -69,7 +79,6 @@ var name_regex = '^[a-zA-Z]+$';
 
     //username validation
     var user =document.getElementById('uname').value;
-    // var userreg = "[A-Za-z]";
     var userreg = '^[A-Za-z]+$';
     var userresult = user.match(userreg);
     if(!(userresult)){
@@ -78,23 +87,22 @@ var name_regex = '^[a-zA-Z]+$';
     }
     var userDetails=new Array();
     var obj = {
-        "firstName" :   fname,
-        "address":  address,
-        "password":    pass.value,
-        "gender":   gender,
         "Image": image,
         "userName": uname,
+        "password":    pass.value,
+        "firstName" :   fname,
         "lastName" : lname,
+        "gender":   gender,
+        "address":  address,
         "ToDO": []
         };
-   console.log(localStorage.getItem("userDetails"));
     if (localStorage.getItem("userDetails")) {
         userDetails = JSON.parse(localStorage.getItem("userDetails"));
         var isUserExists = false;
         for (i=0; i < userDetails.length; i++){
-            console.log("type of->",typeof Username);
-            if ((userDetails[i].Username) == user){
+            if ((userDetails[i].userName) == user){
                 isUserExists = true;
+                break;
             }
         }
         if (isUserExists) {
@@ -137,9 +145,10 @@ function changeProfilePicture(){
 function registration(){
     if (check_for_blank()){
         // alert("Successfully Registered");
-        console.log("Successfully Registered");
+       // console.log("Successfully Registered");
         window.open('login.html', "_self");
     } else {
-        alert('Something went wrong');
+        //alert('Something went wrong');
+        return false;
     }
 }

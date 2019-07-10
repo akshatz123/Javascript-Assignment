@@ -12,7 +12,7 @@
     </head>
     <body onload="filter();">
         <header>
-                    <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO LOGIN PAGE
+                    <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO PAGE
                     <input type="button" value="Logout" class="profile" onclick="onSubmit()">
                     <input type="button"  value="Profile" class="profile" onclick="viewprofile()">
         </header>        
@@ -44,8 +44,8 @@
             <option  value="Personal" id="personal">Personal</option>
             <option value="Office" id="office">Office</option>
         </select>
-        <input type="date" id="sdate" value="sdate" onchange="filterbyDate()"/>
-        <input type="date" id="edate" value="edate" onchange="filterbyDate()"/>
+        Start Date<input type="date" id="sdate" value="sdate" onchange="filterbyDate()"/>
+        End Date<input type="date" id="edate" value="edate" onchange="filterbyDate()"/>
         Filter by Status
         <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
             <option value="Status">Select Status</option>

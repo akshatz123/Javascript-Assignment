@@ -116,7 +116,7 @@ function onDelete(){
 //logout function
 function onSubmit(){
   sessionStorage.clear();
-  alert("Your session Expired. Please relogin to complete the transaction.");
+  // alert("Your session Expired. Please relogin to complete the transaction.");
   window.location="login.html";
 }
 //Redirects to Profile page
@@ -127,7 +127,7 @@ function viewprofile(){
 // Immidiately Invoked function expression
 (function (){
   if(sessionStorage.getItem("user") === null ){
-      window.location.href = "login.html";
       alert("Please login again to view your todo.");
+      window.location.href = "login.html";
   }
 })();

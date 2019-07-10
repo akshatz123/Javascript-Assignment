@@ -16,12 +16,10 @@ for(var index = 0; index < user_array.length; index++)
 
 //Edit ToDo
 function edit(IdofElement){
-  alert(IdofElement)
-  var index, todoid;
+  var index;
   for(var index = 0; index < todo_array.length; index++){
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
-      // alert(todoid);
       document.getElementById("description").value = todo_array[index].Description;
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
@@ -36,10 +34,8 @@ function save(IdofElement){
   var index;
     for(index = 0; index < todo_array.length; index++){
       if(todo_array[index].TodoId == IdofElement){
-      todoid =index;
-      console.log(todoid);
-      console.log(todo_array[todoid]);  
-      break;
+        todoid =index;
+        break;
       }
     }
 
@@ -47,10 +43,8 @@ function save(IdofElement){
     todo_array[todoid].Categories =document.getElementById("categories").value;
     todo_array[todoid].Due_Date = document.getElementById("due_date").value;
     todo_array[todoid].Reminder = document.getElementById("reminder").value;
-    console.log(todo_array[todoid].TodoId);
     user_array = JSON.stringify(user_array);
     localStorage.setItem('userDetails',user_array);
-    // window.location.reload();
     window.location ='todo.html';
    }    
 
@@ -75,7 +69,6 @@ function filter(){
 }
 
 function filterByStatus(){
-// alert("IN filter by status")
   if(document.getElementById("filterbystatus").value === "Status"){
     display_element(todo_array);
   }
@@ -116,17 +109,15 @@ function filterbyDate(){
 
 
 function done(IdofElement){
-  //alert(IdofElement);
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
-      console.log(index, todoid);
-      alert(todoid);
-    break;  
+      break;  
     }
   }  
-  todo_array[index].isDone ="Done"
+  todo_array[index].isDone = "Done";
+  todo_array[index].isDone.disabled;
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
   window.location.reload();
