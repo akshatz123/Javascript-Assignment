@@ -117,8 +117,16 @@ function done(IdofElement){
     }
   }  
   todo_array[index].isDone = "Done";
-  todo_array[index].isDone.disabled;
+  if(todo_array[index].isDone=="Done"){
+    todo_array[index].isDone.disabled = true;
+  }
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
   window.location.reload();
-  }
+}
+
+// var button = document.getElementById(`${done(IdofElement)}`);  
+// button.disabled = true;
+function reset_filter(){
+  display_element(todo_array);
+}

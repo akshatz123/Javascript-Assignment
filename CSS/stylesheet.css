@@ -88,3 +88,6 @@ footer{
     margin-top:10px;
     margin-right: 10px;
 }
+#fname:disabled, #lname:disabled, #radio:disabled, #radio1:disabled, #address:disabled{
+    background-color: #fedcba;
+}

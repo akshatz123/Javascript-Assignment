@@ -27,9 +27,12 @@ function check_for_blank(){
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
-    if((gender=  document.getElementById("radio").name) ==''){
+    if((gender=  document.getElementById("radio").name) == ''){
         alert("Please enter the gender");
-        document.getElementById('radio').style.borderColor="red";
+        return false;
+    }
+    if((image =  document.getElementById("changePic").value) == ''){
+        alert("Please upload the profile image");
         return false;
     }
     if ((address=  document.login.address.value) ==''){
@@ -37,11 +40,11 @@ function check_for_blank(){
         document.getElementById('address').style.borderColor="red";
         return false;
     }
-    if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''){
+    if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''||image == ''){
         return false;
     }
     //Gender selection
-    gender=document.querySelector('input[name="gender"]:checked').value
+    gender=document.querySelector('input[name="gender"]:checked');
     
     //Address Validation
     var add =document.getElementById('address').value;

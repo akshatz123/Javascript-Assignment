@@ -1,6 +1,5 @@
 var  user_name, user, duedate, reminder, categories, isPublic, todoObj;
 var user_array = JSON.parse(localStorage.getItem("userDetails"));
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
 var session = sessionStorage.user;
 
@@ -99,7 +98,7 @@ function onDelete(){
       checkedarray.push(todoid[1]);
     }
   }
-  for(var i =checkedarray.length-1;i>=0 ;i--)
+  for(var i = checkedarray.length-1;i>=0 ;i--)
   {
     for(var j = 0;j < user_array[userid].ToDO.length;j++)
     {

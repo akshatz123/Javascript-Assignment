@@ -20,7 +20,6 @@
             <h1>My To Do List</h1>
             <form method="POST" name="todo" class="todo">
                 Description<input type="text" placeholder="Enter todo list" id="description"><br /><br />
-            
                 Category
                 <select name="categories" value="Select Category" id="categories"required>&nbsp;
                     <option  id="select">Select Category</option>
@@ -34,7 +33,6 @@
                 Reminder<input type="date" name="date" id="reminder"required><br /><br />
                 <ul id="myUL"></ul>
                 <input type="button" value="Add" id="Add" onclick="newElement()">
-                
                 <input type="button" value="Delete" onclick="onDelete()">
             </form>
         <form method="POST">
@@ -52,7 +50,7 @@
             <option value="Pending" id="pending">Pending</option>
             <option value="Done" id="Done">Done</option>
         </select>
-
+        <input type="reset" value="Reset" id="reset" onclick="reset_filter()">
     </form>
         <table id="todo_table" width="100%">
             <thead id ="table_head">
