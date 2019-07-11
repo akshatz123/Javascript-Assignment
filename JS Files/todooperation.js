@@ -24,10 +24,10 @@ function edit(IdofElement){
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
-      for(let i=0;i<(document.getElementsByName("chooseone").length);i++)
-      {
+      for(let i=0;i<(document.getElementsByName("chooseone").length);i++){
           document.getElementsByName("chooseone")[i]= todo_array[index].isPublic;
-      }
+          
+        }
       break;
     }
     }  
@@ -123,13 +123,6 @@ function done(IdofElement){
     }
   }  
   todo_array[index].isDone = "Done";
-  // if(todo_array[index].isDone=="Done"){
-  //   todo_array[index].isDone.disabled = true;
-  // }
-  console.log(todo_array[index].isDone);
-  // if(todo_array[index].isDone === "Done"){
-    document.getElementById(`${done(IdofElement)}`).style.display ="none";
-  // }
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
   // onclick = "this.disabled = true";
