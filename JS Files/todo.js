@@ -115,7 +115,6 @@ function onDelete(){
 //logout function
 function onSubmit(){
   sessionStorage.clear();
-  // alert("Your session Expired. Please relogin to complete the transaction.");
   window.location="login.html";
 }
 //Redirects to Profile page

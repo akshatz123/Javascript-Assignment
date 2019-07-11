@@ -109,6 +109,7 @@ function filterbyDate(){
 
 
 function done(IdofElement){
+  // alert(IdofElement)
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].TodoId == IdofElement){
@@ -117,8 +118,12 @@ function done(IdofElement){
     }
   }  
   todo_array[index].isDone = "Done";
-  if(todo_array[index].isDone=="Done"){
-    todo_array[index].isDone.disabled = true;
+  // if(todo_array[index].isDone=="Done"){
+  //   todo_array[index].isDone.disabled = true;
+  // }
+  console.log(todo_array[index].isDone);
+  if(todo_array[index].isDone === "Done"){
+    document.getElementById(`${done(IdofElement)}`).style.display ="none";
   }
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
