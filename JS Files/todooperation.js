@@ -26,7 +26,7 @@ function edit(IdofElement){
       document.getElementById("reminder").value = todo_array[index].Reminder;
       for(let i=0;i<(document.getElementsByName("chooseone").length);i++){
           document.getElementsByName("chooseone")[i]= todo_array[index].isPublic;
-          
+
         }
       break;
     }
@@ -129,8 +129,10 @@ function done(IdofElement){
   window.location.reload();
 }
 
-// var button = document.getElementById(`${done(IdofElement)}`);  
-// button.disabled = true;
 function reset_filter(){
   display_element(todo_array);
+}
+function disablebtn(IdofElement){
+  alert(disabled);
+  done(IdofElement).disabled = true;
 }

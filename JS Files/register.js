@@ -11,9 +11,6 @@ function check_for_blank(){
         document.getElementById('uname').style.borderColor="red";
         return false;
     }
-    // if((gender=  document.getElementById("radio").name) ==''){
-    //     document.getElementById('radio').style.borderColor="red";
-    // }
     if ((pwd = document.login.pass.value)==''){
         alert("Please enter the password again and it should consist of an alphabet, a number and a special character");
         document.getElementById('pass').style.borderColor="red";
