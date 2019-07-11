@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="CSS/normalize.css">
     <link rel="stylesheet" href="CSS/stylesheet.css">
     <script src="JS Files/profile.js"></script>
+    <script src="JS Files/register.js"></script>
     <title>Profile</title>
 </head>
 <body onload="viewProfile()">
         <header>
                 <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">Profile Page
         </header>
-        <form method="POST" name="profile" class="profilePage">
-        <img src="images/default.png" alt="default" height="60px" width="60px" id="profile_picture"><br /><br />
+        <form method="POST" name="profile">
+        <img  alt="default"src="images/default.png" height="60px" width="60px" id="profile_picture"><br /><br />
         <input type="file" id="changePic" onchange="changeProfilePicture();"disabled><br /><br />
         First Name <input type="text" placeholder="Enter first name"  id="fname"disabled><br/><br/>
         Last Name <input type="text" placeholder="Enter last name" id="lname" disabled><br/><br />

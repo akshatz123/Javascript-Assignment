@@ -76,6 +76,8 @@ header{
     color: #fff;
 }
 footer{
+    position: absolute;
+    bottom:0px;
     background-color: lightgray;
     padding-bottom: 10px;
     color: beige;

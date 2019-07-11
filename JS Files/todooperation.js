@@ -24,6 +24,10 @@ function edit(IdofElement){
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
+      for(let i=0;i<(document.getElementsByName("chooseone").length);i++)
+      {
+          document.getElementsByName("chooseone")[i]= todo_array[index].isPublic;
+      }
       break;
     }
     }  
@@ -43,6 +47,7 @@ function save(IdofElement){
     todo_array[todoid].Categories =document.getElementById("categories").value;
     todo_array[todoid].Due_Date = document.getElementById("due_date").value;
     todo_array[todoid].Reminder = document.getElementById("reminder").value;
+    todo_array[todoid].isPublic = document.getElementById("isPublic").value;
     user_array = JSON.stringify(user_array);
     localStorage.setItem('userDetails',user_array);
     window.location ='todo.html';
@@ -109,11 +114,11 @@ function filterbyDate(){
 
 
 function done(IdofElement){
-  // alert(IdofElement)
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
+      
       break;  
     }
   }  
@@ -122,11 +127,12 @@ function done(IdofElement){
   //   todo_array[index].isDone.disabled = true;
   // }
   console.log(todo_array[index].isDone);
-  if(todo_array[index].isDone === "Done"){
+  // if(todo_array[index].isDone === "Done"){
     document.getElementById(`${done(IdofElement)}`).style.display ="none";
-  }
+  // }
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
+  // onclick = "this.disabled = true";
   window.location.reload();
 }
 

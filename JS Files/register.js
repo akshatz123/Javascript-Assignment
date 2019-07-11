@@ -11,6 +11,9 @@ function check_for_blank(){
         document.getElementById('uname').style.borderColor="red";
         return false;
     }
+    // if((gender=  document.getElementById("radio").name) ==''){
+    //     document.getElementById('radio').style.borderColor="red";
+    // }
     if ((pwd = document.login.pass.value)==''){
         alert("Please enter the password again and it should consist of an alphabet, a number and a special character");
         document.getElementById('pass').style.borderColor="red";
@@ -27,25 +30,28 @@ function check_for_blank(){
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
-    if((gender=  document.getElementById("radio").name) == ''){
-        alert("Please enter the gender");
+    if(radioArr =  document.login.radio.value ==''){
+        alert("Please enter your gender");
         return false;
     }
-    if((image =  document.getElementById("changePic").value) == ''){
-        alert("Please upload the profile image");
-        return false;
-    }
-    if ((address=  document.login.address.value) ==''){
+    if ((address = document.login.address.value) ==''){
         alert("Please enter your address again.");
         document.getElementById('address').style.borderColor="red";
         return false;
     }
-    if (fname==''||lname==''||address==''||pwd==''||gender==''||uname==''||image == ''){
+    if (fname==''||lname==''||address==''||pwd==''||gender== null||uname==''||image == ''){
         return false;
     }
     //Gender selection
-    gender=document.querySelector('input[name="gender"]:checked');
-    
+    radioArr = document.getElementsByName("gender").checked;
+    for(var i = 0; i < (document.getElementsByName("gender").length);i++)
+    {
+        if (document.getElementsByName("gender")[i].checked) {
+            gender = document.getElementsByName("gender")[i].value;
+        }
+    }
+
+
     //Address Validation
     var add =document.getElementById('address').value;
     var address_result=add;
@@ -147,8 +153,6 @@ function changeProfilePicture(){
 // on click Registration
 function registration(){
     if (check_for_blank()){
-        // alert("Successfully Registered");
-       // console.log("Successfully Registered");
         window.open('login.html', "_self");
     } else {
         //alert('Something went wrong');
