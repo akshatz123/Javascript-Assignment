@@ -1,4 +1,3 @@
-var image =sessionStorage.getItem("tempimgdata");
 profile=localStorage.getItem("userDetails");
 profile1=JSON.parse(profile);
 var user_array = JSON.parse(localStorage.getItem("userDetails"));
@@ -64,7 +63,7 @@ function viewProfile(){
             else if(radioArr[1].value == "Female" && profile1[index].gender === 'Female'){
                 radioArr[1].checked = true;
             }
-            document.getElementById("profile_picture").src =profile1[index].Image;        
+            document.getElementById("profile_picture").src = profile1[index].Image;        
         }
     }
 }

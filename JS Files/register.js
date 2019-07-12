@@ -7,32 +7,26 @@ var address = '';
 var image =sessionStorage.getItem("tempimgdata");
 function check_for_blank(){
     if ((uname=  document.login.uname.value) ==''){
-        alert("Please enter your username and it should consist of only alphabets");
         document.getElementById('uname').style.borderColor="red";
         return false;
     }
     if ((pwd = document.login.pass.value)==''){
-        alert("Please enter the password again and it should consist of an alphabet, a number and a special character");
         document.getElementById('pass').style.borderColor="red";
         return false;
     }
     if ((fname=  document.login.fname.value)==''){
-        alert("Please enter your first name and it should consist of only alphabets");
         document.getElementById('fname').style.borderColor="red";
         return false;
     }
     
     if ((lname = document.login.lname.value) ==''){
-        alert("Please enter your last name and it should consist of only alphabets");
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
     if(radioArr =  document.login.radio.value ==''){
-        alert("Please enter your gender");
         return false;
     }
     if ((address = document.login.address.value) ==''){
-        alert("Please enter your address again.");
         document.getElementById('address').style.borderColor="red";
         return false;
     }
@@ -152,7 +146,7 @@ function registration(){
     if (check_for_blank()){
         window.open('login.html', "_self");
     } else {
-        //alert('Something went wrong');
+        alert('Please fill all the fields marked with *');
         return false;
     }
 }

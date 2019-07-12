@@ -104,7 +104,7 @@ function filterbyDate(){
   var newsDate=new Date(startDate);
   var dDate =new Date(endDate);
     var filterByDate = todo_array.filter(function(searchtime){
-      return ((new Date(searchtime.Due_Date) >= newsDate) && (new Date(searchtime.Due_Date) <= dDate));
+      return ((new Date(searchtime.Due_Date).getTime() >= newsDate.getTime()) && (new Date(searchtime.Due_Date).getTime() <= dDate.getTime()));
     })
     var a = document.getElementById("table_body");
     var del = a.lastElementChild;
