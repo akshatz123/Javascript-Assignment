@@ -83,6 +83,13 @@ function display_element(inputArray){
       td1.innerHTML=row;
       var table_head = document.getElementById("table_body");
       table_head.appendChild(td1);
+      if(inputArray[index].isDone==="Done"){
+        document.getElementById("done-"+inputArray[index].TodoId).style.display="none";
+      }
+      else
+      {
+        document.getElementById("done-"+inputArray[index].TodoId).style.display="inline-block";
+      }
     }
 }
 //Delete Function

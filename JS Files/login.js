@@ -10,9 +10,6 @@ function logins(){
             document.getElementById("uname").style.borderColor= "Red";
             return false;
         }
-        //password validation
-        //var pass=document.getElementById('pass').value;
-
         var passwdregex ='[a-zA-Z0-9|\W].{6,}';
         var password_result = pass.match(passwdregex);
         var pwd;
@@ -25,9 +22,7 @@ function logins(){
         user_array= JSON.parse(user_array);
         for (i=0; i<user_array.length; i++){
         pwd = user_array[i].password;
-        //console.log(pwd);
-        //var pwd = atob(user_array[i].password)
-              if(pwd === password_result){
+        if(pwd === password_result){
                 break;
         }
     }

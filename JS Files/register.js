@@ -82,7 +82,7 @@ function check_for_blank(){
         document.getElementById("pass").style.borderColor= "Red";
         return false;
     }
-    password_result= btoa(password_result)
+    password_result= btoa(password_result);
     //username validation
     var user =document.getElementById('uname').value;
     var userreg = '^[A-Za-z]+$';

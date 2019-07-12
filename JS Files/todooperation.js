@@ -24,9 +24,8 @@ function edit(IdofElement){
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
-      for(let i=0;i<(document.getElementsByName("chooseone").length);i++){
-          document.getElementsByName("chooseone")[i]= todo_array[index].isPublic;
-
+      for(var i=0;i < (document.getElementsByName("chooseone").length); i++){
+          document.getElementsByName("chooseone")[index].checked= todo_array[index].isPublic;
         }
       break;
     }
@@ -47,7 +46,12 @@ function save(IdofElement){
     todo_array[todoid].Categories =document.getElementById("categories").value;
     todo_array[todoid].Due_Date = document.getElementById("due_date").value;
     todo_array[todoid].Reminder = document.getElementById("reminder").value;
-    todo_array[todoid].isPublic = document.getElementById("isPublic").value;
+    for(let i = 0; i < (document.getElementsByName("chooseone").length);i++)
+    {
+        if (document.getElementsByName("chooseone")[i].checked) {
+            todo_array[index].isPublic = document.getElementsByName("chooseone")[i].value;
+        }
+    }
     user_array = JSON.stringify(user_array);
     localStorage.setItem('userDetails',user_array);
     window.location ='todo.html';
@@ -125,14 +129,9 @@ function done(IdofElement){
   todo_array[index].isDone = "Done";
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
-  // onclick = "this.disabled = true";
   window.location.reload();
 }
 
 function reset_filter(){
   display_element(todo_array);
-}
-function disablebtn(IdofElement){
-  alert(disabled);
-  done(IdofElement).disabled = true;
 }
