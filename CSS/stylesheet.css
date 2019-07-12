@@ -4,12 +4,12 @@
 }
 .center{
     margin:0 auto;
-    border:2px solid #000;
 }
 form {
     padding-top: 10px;
     text-align: center;
     color:beige;
+    border:2px solid #000;
 }
 h1{
     text-align: center;
@@ -70,15 +70,14 @@ table, tbody, td{
 }
 header{
     color: #fff;
+    font-size: 18px;
 }
 #logo{
     margin-left: 10px;
     color: #fff;
 }
-footer{
-    background-color: lightgray;
-    padding-bottom: 10px;
-    color: beige;
+#pending{
+    background-color: #fff;
 }
 #filterbystatus{
     background-color: #fff;
@@ -87,4 +86,16 @@ footer{
     float: right;
     margin-top:10px;
     margin-right: 10px;
+}
+#fname:disabled, #lname:disabled, #radio:disabled, #radio1:disabled, #address:disabled{
+    background-color: #fedcba;
+}
+#Done{
+    background-color: #fff;
+}
+#status{
+    background-color: #fff;
+}
+#category{
+background-color: #fff;
 }

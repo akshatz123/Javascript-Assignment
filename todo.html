@@ -12,15 +12,32 @@
     </head>
     <body onload="filter();">
         <header>
-                    <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO LOGIN PAGE
+                    <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO PAGE
                     <input type="button" value="Logout" class="profile" onclick="onSubmit()">
                     <input type="button"  value="Profile" class="profile" onclick="viewprofile()">
         </header>        
             <div class=center>
             <h1>My To Do List</h1>
+            <form method="POST">
+                Filter By Category 
+                <select name="categories" value="Select Category" id="filterbycategories" onchange="filter()">
+                    <option  value="Category"id="category">Select Category</option>
+                    <option  value="Personal" id="personal">Personal</option>
+                    <option value="Office" id="office">Office</option>
+                </select>
+                Filter by Date(Due Date): Start Date 
+                <input type="date" id="sdate" value="sdate" onchange="filterbyDate()"/>
+                End Date <input type="date" id="edate" value="edate" onchange="filterbyDate()"/>
+                Filter by Status 
+                <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
+                    <option value="Status"id="status">Select Status</option>
+                    <option value="Pending" id="pending">Pending</option>
+                    <option value="Done" id="Done">Done</option>
+                </select> 
+                <input type="reset" value="Reset" id="reset" onclick="reset_filter()">
+            </form><br />
             <form method="POST" name="todo" class="todo">
                 Description<input type="text" placeholder="Enter todo list" id="description"><br /><br />
-            
                 Category
                 <select name="categories" value="Select Category" id="categories"required>&nbsp;
                     <option  id="select">Select Category</option>
@@ -28,32 +45,13 @@
                     <option  value="Office" id="office">Office</option>
                 </select><br /><br />
                 is Public <input type ="radio" name="chooseone" value="Public" id="radio">Yes 
-                        <input type ="radio" name="chooseone"  value="Private" id="radio">No  <br /><br />
+                        <input type ="radio" name="chooseone" value="Private"   id="radio1">No  <br /><br />
                 
                 Due Date <input type="date" name="date" id="due_date"required><br /><br />
                 Reminder<input type="date" name="date" id="reminder"required><br /><br />
                 <ul id="myUL"></ul>
                 <input type="button" value="Add" id="Add" onclick="newElement()">
-                
-                <input type="button" value="Delete" onclick="onDelete()">
-            </form>
-        <form method="POST">
-        Filter By Category
-        <select name="categories" value="Select Category" id="filterbycategories" onchange="filter()">
-            <option  value="Category">Select Category</option>
-            <option  value="Personal" id="personal">Personal</option>
-            <option value="Office" id="office">Office</option>
-        </select>
-        <input type="date" id="sdate" value="sdate" onchange="filterbyDate()"/>
-        <input type="date" id="edate" value="edate" onchange="filterbyDate()"/>
-        Filter by Status
-        <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
-            <option value="Status">Select Status</option>
-            <option value="Pending" id="pending">Pending</option>
-            <option value="Done" id="Done">Done</option>
-        </select>
-
-    </form>
+                <input type="button" value="Delete" onclick="onDelete()"><br />
         <table id="todo_table" width="100%">
             <thead id ="table_head">
                 <tr>
@@ -70,8 +68,5 @@
         </table>
 </form>
 </div>
-<footer>
-       Copyrights reserved &copy;
-</footer>
 </body>
 </html>

@@ -16,16 +16,17 @@ for(var index = 0; index < user_array.length; index++)
 
 //Edit ToDo
 function edit(IdofElement){
-  alert(IdofElement)
-  var index, todoid;
+  var index;
   for(var index = 0; index < todo_array.length; index++){
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
-      // alert(todoid);
       document.getElementById("description").value = todo_array[index].Description;
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
+      for(var i=0;i < (document.getElementsByName("chooseone").length); i++){
+          document.getElementsByName("chooseone")[index].checked= todo_array[index].isPublic;
+        }
       break;
     }
     }  
@@ -36,10 +37,8 @@ function save(IdofElement){
   var index;
     for(index = 0; index < todo_array.length; index++){
       if(todo_array[index].TodoId == IdofElement){
-      todoid =index;
-      console.log(todoid);
-      console.log(todo_array[todoid]);  
-      break;
+        todoid =index;
+        break;
       }
     }
 
@@ -47,10 +46,14 @@ function save(IdofElement){
     todo_array[todoid].Categories =document.getElementById("categories").value;
     todo_array[todoid].Due_Date = document.getElementById("due_date").value;
     todo_array[todoid].Reminder = document.getElementById("reminder").value;
-    console.log(todo_array[todoid].TodoId);
+    for(let i = 0; i < (document.getElementsByName("chooseone").length);i++)
+    {
+        if (document.getElementsByName("chooseone")[i].checked) {
+            todo_array[index].isPublic = document.getElementsByName("chooseone")[i].value;
+        }
+    }
     user_array = JSON.stringify(user_array);
     localStorage.setItem('userDetails',user_array);
-    // window.location.reload();
     window.location ='todo.html';
    }    
 
@@ -75,7 +78,6 @@ function filter(){
 }
 
 function filterByStatus(){
-// alert("IN filter by status")
   if(document.getElementById("filterbystatus").value === "Status"){
     display_element(todo_array);
   }
@@ -101,8 +103,12 @@ function filterbyDate(){
   var endDate = document.getElementById("edate").value;
   var newsDate=new Date(startDate);
   var dDate =new Date(endDate);
+  if(dDate < newsDate){
+    alert ("Pls enter duedate should be greater than start date");
+    break;
+  }
     var filterByDate = todo_array.filter(function(searchtime){
-      return ((new Date(searchtime.Due_Date) >= newsDate) && (new Date(searchtime.Due_Date) <= dDate));
+      return ((new Date(searchtime.Due_Date).getTime() >= newsDate.getTime()) && (new Date(searchtime.Due_Date).getTime() <= dDate.getTime()));
     })
     var a = document.getElementById("table_body");
     var del = a.lastElementChild;
@@ -116,18 +122,20 @@ function filterbyDate(){
 
 
 function done(IdofElement){
-  //alert(IdofElement);
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
-      console.log(index, todoid);
-      alert(todoid);
-    break;  
+      
+      break;  
     }
   }  
-  todo_array[index].isDone ="Done"
+  todo_array[index].isDone = "Done";
   user_array = JSON.stringify(user_array);
   localStorage.setItem('userDetails',user_array);
   window.location.reload();
-  }
+}
+
+function reset_filter(){
+  display_element(todo_array);
+}

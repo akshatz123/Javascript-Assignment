@@ -1,6 +1,5 @@
 var  user_name, user, duedate, reminder, categories, isPublic, todoObj;
 var user_array = JSON.parse(localStorage.getItem("userDetails"));
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
 var session = sessionStorage.user;
 
@@ -84,6 +83,13 @@ function display_element(inputArray){
       td1.innerHTML=row;
       var table_head = document.getElementById("table_body");
       table_head.appendChild(td1);
+      if(inputArray[index].isDone==="Done"){
+        document.getElementById("done-"+inputArray[index].TodoId).style.display="none";
+      }
+      else
+      {
+        document.getElementById("done-"+inputArray[index].TodoId).style.display="inline-block";
+      }
     }
 }
 //Delete Function
@@ -99,7 +105,7 @@ function onDelete(){
       checkedarray.push(todoid[1]);
     }
   }
-  for(var i =checkedarray.length-1;i>=0 ;i--)
+  for(var i = checkedarray.length-1;i>=0 ;i--)
   {
     for(var j = 0;j < user_array[userid].ToDO.length;j++)
     {
@@ -116,7 +122,6 @@ function onDelete(){
 //logout function
 function onSubmit(){
   sessionStorage.clear();
-  alert("Your session Expired. Please relogin to complete the transaction.");
   window.location="login.html";
 }
 //Redirects to Profile page
@@ -127,7 +132,7 @@ function viewprofile(){
 // Immidiately Invoked function expression
 (function (){
   if(sessionStorage.getItem("user") === null ){
-      window.location.href = "login.html";
       alert("Please login again to view your todo.");
+      window.location.href = "login.html";
   }
 })();
