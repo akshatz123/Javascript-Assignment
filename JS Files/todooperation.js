@@ -103,6 +103,10 @@ function filterbyDate(){
   var endDate = document.getElementById("edate").value;
   var newsDate=new Date(startDate);
   var dDate =new Date(endDate);
+  if(dDate < newsDate){
+    alert ("Pls enter duedate should be greater than start date");
+    break;
+  }
     var filterByDate = todo_array.filter(function(searchtime){
       return ((new Date(searchtime.Due_Date).getTime() >= newsDate.getTime()) && (new Date(searchtime.Due_Date).getTime() <= dDate.getTime()));
     })
