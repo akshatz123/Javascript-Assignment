@@ -1,5 +1,5 @@
 *{
-    background-color:grey;;
+    background-color:lightskyblue;
     margin:0 auto;
 }
 .center{
@@ -8,14 +8,10 @@
 form {
     padding-top: 10px;
     text-align: center;
-    color:beige;
+    color:#000;
     border:2px solid #000;
 }
-h1{
-    text-align: center;
-    font-weight: 900;
-    color :#fff;
-}
+
 textarea{
     background-color: #fff;
 
@@ -38,8 +34,12 @@ button{
     margin-left: 10px;
 }
 table, tbody, td{
-    color: beige;
+
+    color: #000;
     margin: auto;
+}
+#table_head{
+    border: 2px solid #000;
 }
 #filterbycategories{
     background-color: #fff;
@@ -69,18 +69,18 @@ table, tbody, td{
     margin-right:12px;
 }
 header{
-    color: #fff;
+    color: darkblue;
     font-size: 18px;
 }
 #logo{
     margin-left: 10px;
-    color: #fff;
+    color: blue;
 }
 #pending{
     background-color: #fff;
 }
 #filterbystatus{
-    background-color: #fff;
+    background-color:#fff;
 }
 .profile{
     float: right;

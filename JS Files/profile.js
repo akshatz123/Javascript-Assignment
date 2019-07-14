@@ -1,6 +1,5 @@
-profile=localStorage.getItem("userDetails");
-profile1=JSON.parse(profile);
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
+profile=JSON.parse(localStorage.getItem("user_Details"));
+var user_array = JSON.parse(localStorage.getItem("user_Details"));
 var session = sessionStorage.user;
 todo_array = user_array;
 var gender;
@@ -44,42 +43,49 @@ function save(){
         }
         todo_array[index].Image = document.getElementById("profile_picture").src;
         user_array = JSON.stringify(user_array);
-        localStorage.setItem("userDetails",user_array);
+        localStorage.setItem("user_Details",user_array);
         window.location.href ="todo.html";
+        break;
         }
     }
 }
 //view profile
 function viewProfile(){
-    for(index = 0; index < profile1.length; index++){
+    for(index = 0; index < profile.length; index++){
         if(sessionStorage.user == todo_array[index].userName){
-            document.getElementById("fname").value = profile1[index].firstName;
-            document.getElementById("lname").value = profile1[index].lastName;
-            document.getElementById("address").value = profile1[index].address;
+            document.getElementById("fname").value = profile[index].firstName;
+            document.getElementById("lname").value = profile[index].lastName;
+            document.getElementById("address").value = profile[index].address;
             radioArr =document.getElementsByName("gender");
-            if(radioArr[0].value == "Male" && profile1[index].gender === 'Male' ){
+            if(radioArr[0].value == "Male" && profile[index].gender === 'Male' ){
                 radioArr[0].checked = true;
             }
-            else if(radioArr[1].value == "Female" && profile1[index].gender === 'Female'){
+            else if(radioArr[1].value == "Female" && profile[index].gender === 'Female'){
                 radioArr[1].checked = true;
             }
-            document.getElementById("profile_picture").src = profile1[index].Image;        
+            document.getElementById("profile_picture").src = profile[index].Image;        
         }
     }
 }
 //Profile pic
 function changeProfilePicture(){
-   var Image =document.getElementById("changePic").files[0];
+    var Image =document.getElementById("changePic").files[0];
     getimgbase64(Image);
-    function getimgbase64(Image){
+    function getimgbase64(Image)
+    {
         var reader = new FileReader();
         reader.readAsDataURL(Image);
         reader.onload = function () {
         var imgdata =reader.result;
+        console.log(imgdata);
         sessionStorage.setItem("tempimgdata",imgdata);
         document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
-        }
+        Image = imgdata;
+        };
+        reader.onerror = function (error) {
+        };    
     }
+        
 }
 
 // Immidiately Invoked function expression

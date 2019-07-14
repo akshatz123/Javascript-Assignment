@@ -1,5 +1,5 @@
 var  user_name, user, duedate, reminder, categories, isPublic, todoObj;
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
+var user_array = JSON.parse(localStorage.getItem("user_Details"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
 var session = sessionStorage.user;
 
@@ -17,19 +17,30 @@ function newElement() {
       document.getElementById("description").style.borderColor = "red";
       return false;
     }
-    reminder= document.getElementById("reminder").value;
-    if(reminder == ''){
-      document.getElementById("reminder").style.borderColor = "red";
-    }
+  today = new Date();
+  if((new Date(document.getElementById("due_date").value).getDate() < today.getDate())||(document.getElementById("due_date").value === "")){
+    document.getElementById("due_date").style.borderColor = "red";
+    alert ("Due date should be greater than or equal to current date");
+    return false;
+  }
+  else {
     Due_Date=document.getElementById("due_date").value;
-    if(Due_Date == ''){
-      document.getElementById("due_date").style.borderColor ="red";
+  }
+  if((document.getElementById("reminder").value === '')||(new Date(document.getElementById("reminder").value).getDate() < new Date().getDate())||(new Date(document.getElementById("reminder").value).getDate() > new Date(document.getElementById("due_date").value).getDate())){
+    document.getElementById("reminder").style.borderColor = "red";
+    alert ("Reminder Date should be greater than current date & less than due date");
+    return false;
     }
+  else{
+    reminder = document.getElementById("reminder").value;
+    }
+  
+    
     categories=document.getElementById("categories").value;
     if(categories == ''){
       document.getElementById("categories").style.borderColor ="red";
     }
-    todoid=new Date().getTime();
+    todoid=new Date().getDate();
     isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
     pending = document.getElementById("pending").value;
     todoObj = {
@@ -54,7 +65,7 @@ function newElement() {
       break;
     }
   }
-  localStorage.setItem("userDetails",JSON.stringify(user_array));
+  localStorage.setItem("user_Details",JSON.stringify(user_array));
 }
   function getRadioVal() {
     if(document.getElementsByName("radio").values === "Public"){
@@ -85,17 +96,21 @@ function display_element(inputArray){
       table_head.appendChild(td1);
       if(inputArray[index].isDone==="Done"){
         document.getElementById("done-"+inputArray[index].TodoId).style.display="none";
+        document.getElementById("edit-"+inputArray[index].TodoId).style.display = "none";
+        document.getElementById("save-"+inputArray[index].TodoId).style.display = "none";
       }
       else
       {
         document.getElementById("done-"+inputArray[index].TodoId).style.display="inline-block";
+        document.getElementById("edit-"+inputArray[index].TodoId).style.display="inline-block";
+        document.getElementById("save-"+inputArray[index].TodoId).style.display="inline-block";
       }
     }
 }
 //Delete Function
 function onDelete(){
   var checkedarray=[];
-  user_array= JSON.parse(localStorage.getItem("userDetails"));
+  user_array= JSON.parse(localStorage.getItem("user_Details"));
   var deletearray = document.getElementsByName("rows");
   for(var j = 0;j < deletearray.length;j++){
     todostring = deletearray[j].id;
@@ -115,7 +130,7 @@ function onDelete(){
     }
   }
 
-      localStorage.setItem("userDetails",JSON.stringify(user_array));
+      localStorage.setItem("user_Details",JSON.stringify(user_array));
       window.location.reload();
     }
 
@@ -126,7 +141,7 @@ function onSubmit(){
 }
 //Redirects to Profile page
 function viewprofile(){
-  window.location.href='profile.html';
+  window.location.href='../html/profile.html';
 }
 
 // Immidiately Invoked function expression

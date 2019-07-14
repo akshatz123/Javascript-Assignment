@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/normalize.css" type="text/css"/>
+    <link rel="stylesheet" href="CSS/reset.css" type="text/css"/>
+    <link rel="stylesheet" href="CSS/stylesheet.css" type="text/css">
+    <title>Registration</title>
+</head>
+<body>
+    <header>
+        <img src="images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO REGISTRATION PAGE
+        <a href="html/login.html">
+            <input type="button" value="Login" id="signup"> 
+        </a>
+    </header>
+    <div class="center">
+            <script src="JS Files/register.js"></script>
+
+            <form method="POST" name="login"class="registration">
+                <img src="images/default.png" alt="Default" id="profile_picture"height="60px" width="60px" ><br /><br />
+
+                <input type="file" id="changePic" onchange="changeProfilePicture()" accept="image/png, image/jpeg"><br /><br />
+                Username* <input type="text"name="username" placeholder="Enter your username" id="uname"required><br /><br/>
+                Password* <input type="password" name="password" placeholder="Enter your password" id="pass"required><br /><br/>
+                First Name* <input type="text" placeholder="Enter first name" name="fname"  id="fname"required><br/><br/>
+                Last Name* <input type="text" placeholder="Enter last name" name="lname" id="lname"required><br/><br />
+                Gender* <input type="radio" name="gender" id="radio" value="Male"> Male
+                <input type="radio" name="gender" id="radio" value="Female" > Female<br /><br />
+                Address* <textarea placeholder="Enter address" name="address" rows="5" cols="20" id="address"required></textarea><br /><br />
+                <input type="button" value="Registration" onclick= "registration()"> 
+            </form>
+    </div>
+</body>
+</html>
