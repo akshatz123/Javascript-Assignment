@@ -21,7 +21,7 @@
             <script src="../JS Files/login.js"></script>
             <form name="login" method="post">
                 Username  <input type="text" name="username" placeholder="Enter your username" id="uname" required><br /><br />
-                Password <input type="password" name="password" placeholder="Enter your Password" id="pass" required ><br /><br />
+                Password <input type="password" name="password" placeholder="Enter your Password" id="pass" onkeyup="logins()" required ><br /><br />
                 <input type="button" id="button" value="Login" onclick="logins()">
             </form>
         </div>
