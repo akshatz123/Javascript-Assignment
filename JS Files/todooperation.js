@@ -1,4 +1,4 @@
-var user_array = JSON.parse(localStorage.getItem("userDetails"));
+var user_array = JSON.parse(localStorage.getItem("user_Details"));
 var session = sessionStorage.user;
 var status ="Pending"; 
 
@@ -53,8 +53,8 @@ function save(IdofElement){
         }
     }
     user_array = JSON.stringify(user_array);
-    localStorage.setItem('userDetails',user_array);
-    window.location ='todo.html';
+    localStorage.setItem('user_Details',user_array);
+    window.location ='../html/todo.html';
    }    
 
 //Filter By Category
@@ -103,9 +103,9 @@ function filterbyDate(){
   var endDate = document.getElementById("edate").value;
   var newsDate=new Date(startDate);
   var dDate =new Date(endDate);
-  if(dDate < newsDate){
-    alert ("Pls enter duedate should be greater than start date");
-    break;
+  if(dDate <= newsDate){
+    alert ("Due date should be greater than start date");
+    return false;  
   }
     var filterByDate = todo_array.filter(function(searchtime){
       return ((new Date(searchtime.Due_Date).getTime() >= newsDate.getTime()) && (new Date(searchtime.Due_Date).getTime() <= dDate.getTime()));
@@ -119,20 +119,17 @@ function filterbyDate(){
     display_element(filterByDate);
   }
 
-
-
 function done(IdofElement){
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].TodoId == IdofElement){
       todoid = index;
-      
       break;  
     }
   }  
   todo_array[index].isDone = "Done";
   user_array = JSON.stringify(user_array);
-  localStorage.setItem('userDetails',user_array);
+  localStorage.setItem('user_Details',user_array);
   window.location.reload();
 }
 

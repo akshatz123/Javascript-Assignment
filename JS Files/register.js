@@ -2,9 +2,9 @@ var pwd = '';
 var lname = '';
 var uname = '';
 var fname = '';
-var gender = '';
+var radio_Arr = '';
 var address = '';
-var image =sessionStorage.getItem("tempimgdata");
+var image = sessionStorage.getItem("tempimgdata");
 function check_for_blank(){
     if ((uname=  document.login.uname.value) ==''){
         document.getElementById('uname').style.borderColor="red";
@@ -23,18 +23,18 @@ function check_for_blank(){
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
-    if(radioArr =  document.login.radio.value ==''){
+    if(radio_Arr = document.login.radio.value ==''){
         return false;
     }
     if ((address = document.login.address.value) ==''){
         document.getElementById('address').style.borderColor="red";
         return false;
     }
-    if (fname==''||lname==''||address==''||pwd==''||gender== null||uname==''||image == ''){
+    if (fname==''||lname==''||address==''||pwd==''||radio_Arr== null||uname==''||image == ''){
         return false;
     }
     //Gender selection
-    radioArr = document.getElementsByName("gender").checked;
+    radio_Arr = document.getElementsByName("gender").checked;
     for(var i = 0; i < (document.getElementsByName("gender").length);i++)
     {
         if (document.getElementsByName("gender")[i].checked) {
@@ -70,13 +70,13 @@ function check_for_blank(){
 
     //password validation
     pwd=document.getElementById('pass').value;
-    var passwdregex ='[a-zA-Z0-9|\W].{6,}';
-    var password_result = pwd.match(passwdregex);
+    var password_regex ='[a-zA-Z0-9|\W].{6,}';
+    var password_result = pwd.match(password_regex);
     if(!(password_result)){
         document.getElementById("pass").style.borderColor= "Red";
         return false;
     }
-    password_result= btoa(password_result);
+    password_result = btoa(password_result);
     //username validation
     var user =document.getElementById('uname').value;
     var userreg = '^[A-Za-z]+$';
@@ -85,7 +85,7 @@ function check_for_blank(){
         document.getElementById("uname").style.borderColor= "Red";
         return false;
     }
-    var userDetails=new Array();
+    var user_Details=new Array();
     var obj = {
         "Image": image,
         "userName": uname,
@@ -96,11 +96,11 @@ function check_for_blank(){
         "address":  address,
         "ToDO": []
         };
-    if (localStorage.getItem("userDetails")) {
-        userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    if (localStorage.getItem("user_Details")) {
+        user_Details = JSON.parse(localStorage.getItem("user_Details"));
         var isUserExists = false;
-        for (i=0; i < userDetails.length; i++){
-            if ((userDetails[i].userName) == user){
+        for (i=0; i < user_Details.length; i++){
+            if ((user_Details[i].userName) == user){
                 isUserExists = true;
                 break;
             }
@@ -111,16 +111,16 @@ function check_for_blank(){
             return false;
         }
         else {
-            userDetails.push(obj);
-            var string = JSON.stringify(userDetails);
-            localStorage.setItem("userDetails", string);
+            user_Details.push(obj);
+            var string = JSON.stringify(user_Details);
+            localStorage.setItem("user_Details", string);
             return true;
         }
     }
     else {
-        userDetails.push(obj);
-        var string = JSON.stringify(userDetails);
-        localStorage.setItem("userDetails", string);
+        user_Details.push(obj);
+        var string = JSON.stringify(user_Details);
+        localStorage.setItem("user_Details", string);
         return true;
     }
 }
@@ -130,21 +130,25 @@ function check_for_blank(){
 function changeProfilePicture(){
     var Image =document.getElementById("changePic").files[0];
     getimgbase64(Image);
+    
     function getimgbase64(Image){
         var reader = new FileReader();
         reader.readAsDataURL(Image);
         reader.onload = function () {
-        var imgdata =reader.result;
+        var imgdata = reader.result;
+        // console.log(imgdata);
         sessionStorage.setItem("tempimgdata",imgdata);
-        document.getElementById("profile_picture").src=sessionStorage.tempimgdata;
-        }
-    }
+        document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
+        image = imgdata;
+        };
+        reader.onerror = function (error) {
+        };}
+    
 }
-
 // on click Registration
 function registration(){
     if (check_for_blank()){
-        window.open('login.html', "_self");
+        window.open('html/login.html', "_self");
     } else {
         alert('Please fill all the fields marked with *');
         return false;
