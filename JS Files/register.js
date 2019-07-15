@@ -70,13 +70,15 @@ function check_for_blank(){
 
     //password validation
     pwd=document.getElementById('pass').value;
-    var password_regex ='[a-zA-Z0-9|\W].{6,}';
+    var password_regex = '[a-zA-Z0-9|\W\s]';
     var password_result = pwd.match(password_regex);
     if(!(password_result)){
+        alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
         document.getElementById("pass").style.borderColor= "Red";
         return false;
     }
-    password_result = btoa(password_result);
+    password_result = btoa(pwd);
+    
     //username validation
     var user =document.getElementById('uname').value;
     var userreg = '^[A-Za-z]+$';
@@ -85,6 +87,7 @@ function check_for_blank(){
         document.getElementById("uname").style.borderColor= "Red";
         return false;
     }
+
     var user_Details=new Array();
     var obj = {
         "Image": image,
@@ -96,6 +99,7 @@ function check_for_blank(){
         "address":  address,
         "ToDO": []
         };
+    
     if (localStorage.getItem("user_Details")) {
         user_Details = JSON.parse(localStorage.getItem("user_Details"));
         var isUserExists = false;
@@ -150,7 +154,6 @@ function registration(){
     if (check_for_blank()){
         window.open('html/login.html', "_self");
     } else {
-        alert('Please fill all the fields marked with *');
         return false;
     }
 }

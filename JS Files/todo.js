@@ -18,7 +18,7 @@ function newElement() {
       return false;
     }
   today = new Date();
-  if((new Date(document.getElementById("due_date").value).getDate() < today.getDate())||(document.getElementById("due_date").value === "")){
+  if((new Date(document.getElementById("due_date").value).getTime() < today.getTime())||(document.getElementById("due_date").value === "")){
     document.getElementById("due_date").style.borderColor = "red";
     alert ("Due date should be greater than or equal to current date");
     return false;
@@ -26,7 +26,7 @@ function newElement() {
   else {
     Due_Date=document.getElementById("due_date").value;
   }
-  if((document.getElementById("reminder").value === '')||(new Date(document.getElementById("reminder").value).getDate() < new Date().getDate())||(new Date(document.getElementById("reminder").value).getDate() > new Date(document.getElementById("due_date").value).getDate())){
+  if((document.getElementById("reminder").value === '')||(new Date(document.getElementById("reminder").value).getTime() < new Date().getTime())||(new Date(document.getElementById("reminder").value).getTime() > new Date(document.getElementById("due_date").value).getTime())){
     document.getElementById("reminder").style.borderColor = "red";
     alert ("Reminder Date should be greater than current date & less than due date");
     return false;
@@ -40,7 +40,7 @@ function newElement() {
     if(categories == ''){
       document.getElementById("categories").style.borderColor ="red";
     }
-    todoid=new Date().getDate();
+    todoid=new Date().getTime();
     isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
     pending = document.getElementById("pending").value;
     todoObj = {
