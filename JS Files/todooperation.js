@@ -24,9 +24,17 @@ function edit(IdofElement){
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
-      for(var i=0;i < (document.getElementsByName("chooseone").length); i++){
-          document.getElementsByName("chooseone")[index].checked= todo_array[index].isPublic;
-        }
+      // for(var i=0;i < (document.getElementsByName("chooseone").length); i++){
+      //     document.getElementsByName("chooseone")[index].checked= todo_array[index].isPublic;
+      //   }
+      radioArr =document.getElementsByName("chooseone");
+      if(radioArr[0].value == "Public" && todo_array[index].isPublic === 'Public' ){
+          radioArr[0].checked = true;
+      }
+      else if(radioArr[1].value == "Private" && todo_array[index].isPublic === 'Private'){
+          radioArr[1].checked = true;
+      }
+
       break;
     }
     }  

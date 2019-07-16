@@ -1,14 +1,10 @@
 var v ,password, uname, username_result, password_result, pwd, username, pass;
 function logins(){
-    if(onclick == true){
-     validate();
-    }
     document.getElementById("pass").addEventListener("keyup", function(event) {
         event.preventDefault();
-        document.getElementById("pass").length
         if (event.keyCode === 13) {
             validate();
-            console.log(event.keyCode);
+
         }
     });
         
@@ -24,9 +20,11 @@ function logins(){
                 document.getElementById("uname").style.borderColor= "Red";
                 return false;
             }
-            var passwdregex ='[a-zA-Z0-9|\W]';
+            var passwdregex = '[a-zA-Z0-9|\W]';
             var password_result = pass.match(passwdregex);
             if(!(password_result)){
+                alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
+
                 document.getElementById("pass").style.borderColor= "Red";
                 return false;
             }
@@ -42,7 +40,8 @@ function logins(){
         var flag = false;
         for (var index = 0; index < user_array.length; index++) 
         {
-            if((user ===user_array[index].userName) && (pwd === user_array[index].password)){
+            if((user === user_array[index].userName) && (password_result === user_array[index].password)){
+
                 isLoggedIn = true;
                 if(isLoggedIn===true)
                 {
@@ -56,5 +55,6 @@ function logins(){
 
         if (flag === false){
             alert("Invalid Password/Username");
+            // break;
         }
     }
