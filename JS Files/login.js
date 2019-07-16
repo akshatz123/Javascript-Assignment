@@ -20,7 +20,8 @@ function logins(){
                 document.getElementById("uname").style.borderColor= "Red";
                 return false;
             }
-            var passwdregex = '[a-zA-Z0-9|\W]';
+            // var passwdregex = '[a-zA-Z0-9|\W]';
+            var passwdregex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})";
             var password_result = pass.match(passwdregex);
             if(!(password_result)){
                 alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
