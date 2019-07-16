@@ -44,10 +44,19 @@ function save(){
         todo_array[index].Image = document.getElementById("profile_picture").src;
         user_array = JSON.stringify(user_array);
         localStorage.setItem("user_Details",user_array);
-        window.location.href ="todo.html";
         break;
         }
+       
     }
+    document.getElementById("fname").disabled = true;
+    document.getElementById("lname").disabled = true;
+    document.getElementById("address").disabled = true;
+    document.getElementsByName("gender").disabled = true;     
+    for(let i=0;i<(document.getElementsByName("gender").length);i++)
+    {
+        document.getElementsByName("gender")[i].disabled = true;
+    }
+    document.getElementById("changePic").disabled = true;
 }
 //view profile
 function viewProfile(){
@@ -77,7 +86,7 @@ function changeProfilePicture(){
         reader.readAsDataURL(Image);
         reader.onload = function () {
         var imgdata =reader.result;
-        console.log(imgdata);
+        // console.log(imgdata);
         sessionStorage.setItem("tempimgdata",imgdata);
         document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
         Image = imgdata;
@@ -95,3 +104,6 @@ function changeProfilePicture(){
         alert("Please login again to view your profile.");
     }
 })();
+function todo(){
+    window.location.href ="todo.html";
+}
