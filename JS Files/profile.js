@@ -103,6 +103,12 @@ function changeProfilePicture(){
         alert("Please login again to view your profile.");
     }
 })();
+// Todo Button
 function todo(){
     window.location.href ="todo.html";
 }
+// Logout Button
+function onSubmit(){
+    sessionStorage.clear();
+    window.location="login.html";
+  }
