@@ -78,7 +78,6 @@ function check_for_blank(){
         return false;
     }
     password_result = btoa(pwd);
-    
     //username validation
     var user =document.getElementById('uname').value;
     var userreg = '^[A-Za-z]+$';
@@ -87,7 +86,6 @@ function check_for_blank(){
         document.getElementById("uname").style.borderColor= "Red";
         return false;
     }
-
     var user_Details=new Array();
     var obj = {
         "Image": image,
@@ -99,7 +97,6 @@ function check_for_blank(){
         "address":  address,
         "ToDO": []
         };
-    
     if (localStorage.getItem("user_Details")) {
         user_Details = JSON.parse(localStorage.getItem("user_Details"));
         var isUserExists = false;

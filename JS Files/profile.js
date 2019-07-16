@@ -86,7 +86,6 @@ function changeProfilePicture(){
         reader.readAsDataURL(Image);
         reader.onload = function () {
         var imgdata =reader.result;
-        // console.log(imgdata);
         sessionStorage.setItem("tempimgdata",imgdata);
         document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
         Image = imgdata;
