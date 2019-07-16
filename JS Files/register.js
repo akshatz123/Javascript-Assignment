@@ -70,7 +70,8 @@ function check_for_blank(){
 
     //password validation
     pwd=document.getElementById('pass').value;
-    var password_regex = '[a-zA-Z0-9|\W\s]';
+    // var password_regex = '[a-zA-Z0-9|\W\s]';
+    var password_regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})";
     var password_result = pwd.match(password_regex);
     if(!(password_result)){
         alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
