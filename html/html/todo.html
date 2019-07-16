@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../CSS/normalize.css" />
+        <link rel="stylesheet" href="../CSS/reset.css" />
+        <link rel="stylesheet" href="../CSS/stylesheet.css" />
+        <script src="../JS Files/todo.js"></script>
+        <script src="../JS Files/todooperation.js"></script>
+        <script src="../JS Files/login.js"></script>
+        <title>To Do </title>
+    </head>
+    <body onload="filter();">
+        <header>
+                    <img src="../images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">TODO PAGE
+                    <input type="button" value="Logout" class="profile" onclick="onSubmit()">
+                    <input type="button"  value="Profile" class="profile" onclick="viewprofile()">
+        </header>        
+            <div class=center>
+            <form method="POST">
+                Filter By Category 
+                <select name="categories" value="Select Category" id="filterbycategories" onchange="filter()">
+                    <option  value="Category"id="category">Select Category</option>
+                    <option  value="Personal" id="personal">Personal</option>
+                    <option value="Office" id="office">Office</option>
+                </select>
+                Filter by Date(Due Date): 
+                Start Date <input type="date" value="newsDate" id="sdate" />
+                End Date <input type="date" value="dDate" id="edate" onchange="filterbyDate()"/>
+                Filter by Status 
+                <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
+                    <option value="Status"id="status">Select Status</option>
+                    <option value="Pending" id="pending">Pending</option>
+                    <option value="Done" id="Done">Done</option>
+                </select> 
+                <input type="reset" value="Reset" id="reset" onclick="reset_filter()">
+            </form><br />
+            <form method="POST" name="todo" class="todo">
+                Description<input type="text" placeholder="Enter todo list" id="description"><br /><br />
+                Category
+                <select name="categories" value="Select Category" id="categories"required>&nbsp;
+                    <option  id="select">Select Category</option>
+                    <option  value="Personal" id="personal">Personal</option>
+                    <option  value="Office" id="office">Office</option>
+                </select><br /><br />
+                is Public <input type ="radio" name="chooseone" value="Public" id="radio">Yes 
+                        <input type ="radio" name="chooseone" value="Private"   id="radio1">No  <br /><br />
+                
+                Due Date <input type="date" name="date" id="due_date"required><br /><br />
+                Reminder<input type="date" name="date" id="reminder"required><br /><br />
+                <ul id="myUL"></ul>
+                <input type="button" value="Add" id="Add" onclick="newElement()">
+                <input type="button" value="Delete" onclick="onDelete()"><br />
+        <table id="todo_table" width="100%">
+            <thead id ="table_head">
+                <tr>
+                    <td>Select</td>
+                    <td>Description</td>
+                    <td>Category</td>
+                    <td>DueDate</td>
+                    <td>Reminder</td>
+                    <td>isPublic</td>
+                    <td>isDone</td>
+                    <td>Select</td>
+                    <td>Select</td>
+                    <td>Select</td>
+                    
+                </tr>   
+            </thead>
+            <tbody id="table_body" ></tbody>
+        </table>
+</form>
+</div>
+</body>
+</html>
