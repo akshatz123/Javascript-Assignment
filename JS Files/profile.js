@@ -1,17 +1,14 @@
-profile=JSON.parse(localStorage.getItem("user_Details"));
-var user_array = JSON.parse(localStorage.getItem("user_Details"));
+var user_array = JSON.parse(localStorage.getItem("user_details"));
 var session = sessionStorage.user;
-todo_array = user_array;
 var gender;
-var img =sessionStorage.getItem("tempimgdata")
-   
+var img = sessionStorage.getItem("temp_img_data");
 //Function for radio button
 function getRadioVal() {
-    if(document.getElementById("radio").value.checked === "Male"){
-        gender = document.getElementById("radio").checked;
+    if(document.getElementById("male").value.checked === "Male"){
+        gender = document.getElementById("male").checked;
         }
-    else if(document.getElementById("radio1").value === "Female"){
-        gender = document.getElementById("radio1").checked;
+    else if(document.getElementById("female").value === "Female"){
+        gender = document.getElementById("female").checked;
         }
     return  gender;
 }
@@ -26,24 +23,24 @@ function edit(){
     {
         document.getElementsByName("gender")[i].disabled = false;
     }
-    document.getElementById("changePic").disabled = false;
+    document.getElementById("change_pic").disabled = false;
 }
 
 function save(){
-    for(index = 0; index < todo_array.length; index++){
-    if(sessionStorage.user == todo_array[index].userName){
-        todo_array[index].firstName = document.getElementById("fname").value;
-        todo_array[index].lastName = document.getElementById("lname").value;
-        todo_array[index].address = document.getElementById("address").value;
+    for(index = 0; index < user_array.length; index++){
+    if(sessionStorage.user == user_array[index].user_name){
+        user_array[index].first_name = document.getElementById("fname").value;
+        user_array[index].last_name = document.getElementById("lname").value;
+        user_array[index].address = document.getElementById("address").value;
         for(let i = 0; i < (document.getElementsByName("gender").length);i++)
         {
             if (document.getElementsByName("gender")[i].checked) {
-                todo_array[index].gender = document.getElementsByName("gender")[i].value;
+                user_array[index].gender = document.getElementsByName("gender")[i].value;
             }
         }
-        todo_array[index].Image = document.getElementById("profile_picture").src;
+        user_array[index].Image = document.getElementById("profile_picture").src;
         user_array = JSON.stringify(user_array);
-        localStorage.setItem("user_Details",user_array);
+        localStorage.setItem("user_details",user_array);
         break;
         }
        
@@ -56,29 +53,32 @@ function save(){
     {
         document.getElementsByName("gender")[i].disabled = true;
     }
-    document.getElementById("changePic").disabled = true;
+    document.getElementById("change_pic").disabled = true;
 }
 //view profile
-function viewProfile(){
-    for(index = 0; index < profile.length; index++){
-        if(sessionStorage.user == todo_array[index].userName){
-            document.getElementById("fname").value = profile[index].firstName;
-            document.getElementById("lname").value = profile[index].lastName;
-            document.getElementById("address").value = profile[index].address;
-            radioArr =document.getElementsByName("gender");
-            if(radioArr[0].value == "Male" && profile[index].gender === 'Male' ){
-                radioArr[0].checked = true;
-            }
-            else if(radioArr[1].value == "Female" && profile[index].gender === 'Female'){
-                radioArr[1].checked = true;
-            }
-            document.getElementById("profile_picture").src = profile[index].Image;        
+function view_profile(){
+        for(index = 0; index < user_array.length; index++){
+            if(sessionStorage.user == user_array[index].userName){
+                document.getElementById("fname").value = user_array[index].first_name;
+                document.getElementById("lname").value = user_array[index].last_name;
+                document.getElementById("address").value = user_array[index].address;
+                radio_arr =document.getElementsByName("gender");
+                if(radio_arr[0].value == "Male" && user_array[index].gender === 'Male' ){
+                    radio_arr[0].checked = true;
+                }
+                else if(radio_arr[1].value == "Female" && user_array[index].gender === 'Female'){
+                    radio_arr[1].checked = true;
+                }
+                if(user_array[index].Image === null){
+                    user_array[index].Image =document.getElementById("profile_picture").src;
+                }
+                document.getElementById("profile_picture").src = user_array[index].Image;
         }
     }
 }
 //Profile pic
-function changeProfilePicture(){
-    var Image =document.getElementById("changePic").files[0];
+function change_profile_picture(){
+    var Image =document.getElementById("change_pic").files[0];
     getimgbase64(Image);
     function getimgbase64(Image)
     {
@@ -86,10 +86,10 @@ function changeProfilePicture(){
         reader.readAsDataURL(Image);
         reader.onload = function () {
         var imgdata =reader.result;
-        sessionStorage.setItem("tempimgdata",imgdata);
-        document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
+        sessionStorage.setItem("temp_img_data",imgdata);
+        document.getElementById("profile_picture").src = sessionStorage.temp_img_data;
         Image = imgdata;
-        };
+    };
         reader.onerror = function (error) {
         };    
     }
@@ -98,9 +98,9 @@ function changeProfilePicture(){
 
 // Immidiately Invoked function expression
 (function (){
-    if(sessionStorage.getItem("user") === null ){
+    if(sessionStorage.getItem("user_name") === null ){
         window.location.href = "login.html";
-        alert("Please login again to view your profile.");
+        alert("Please login again to view your user_array.");
     }
 })();
 // Todo Button
@@ -108,7 +108,7 @@ function todo(){
     window.location.href ="todo.html";
 }
 // Logout Button
-function onSubmit(){
+function on_submit(){
     sessionStorage.clear();
     window.location="login.html";
   }

@@ -14,7 +14,6 @@ form {
 
 textarea{
     background-color: #fff;
-
 }
 input{
     background-color: #fff;
@@ -34,14 +33,18 @@ button{
     margin-left: 10px;
 }
 table, tbody, td{
-
     color: #000;
     margin: auto;
+    box-sizing: border-box;
 }
 #table_head{
-    border: 2px solid #000;
+    border: 2px solid orange;
+    background-color: GRAY;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: 'Trebuchet MS';
 }
-#filterbycategories{
+#filter_by_categories{
     background-color: #fff;
     margin-left:10px;
 }
@@ -79,7 +82,7 @@ header{
 #pending{
     background-color: #fff;
 }
-#filterbystatus{
+#filter_by_status{
     background-color:#fff;
 }
 .profile{
@@ -98,4 +101,19 @@ header{
 }
 #category{
 background-color: #fff;
+}
+#edit_button{
+    background-color: lightcoral;
+}
+#save_button{
+    background-color: lightgreen;
+}
+#delete{
+    background-color: lightcoral;
+}
+#add{
+    background-color: lightgreen;
+}
+#todo{
+    background-color: floralwhite;
 }
