@@ -22,13 +22,13 @@
             <form method="POST" name="login"class="registration">
                 <img src="images/default.png" alt="Default" id="profile_picture"height="60px" width="60px" ><br /><br />
 
-                <input type="file" id="changePic" onchange="changeProfilePicture()" accept="image/png, image/jpeg"><br /><br />
+                <input type="file" id="changePic" onchange="changeProfilePicture()" accept="image/png, image/jpeg"required><br /><br />
                 Username* <input type="text"name="username" placeholder="Enter your username" id="uname"required><br /><br/>
                 Password* <input type="password" name="password" placeholder="Enter your password" id="pass"required><br /><br/>
                 First Name* <input type="text" placeholder="Enter first name" name="fname"  id="fname"required><br/><br/>
                 Last Name* <input type="text" placeholder="Enter last name" name="lname" id="lname"required><br/><br />
-                Gender* <input type="radio" name="gender" id="radio" value="Male"> Male
-                <input type="radio" name="gender" id="radio" value="Female" > Female<br /><br />
+                Gender* <input type="radio" name="gender" id="male" value="Male"> Male
+                <input type="radio" name="gender" id="female" value="Female" > Female<br /><br />
                 Address* <textarea placeholder="Enter address" name="address" rows="5" cols="20" id="address"required></textarea><br /><br />
                 <input type="button" value="Registration" onclick= "registration()"> 
             </form>

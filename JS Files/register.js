@@ -15,6 +15,10 @@ function check_for_blank(){
         document.getElementById('pass').style.borderColor="red";
         return false;
     }
+    if(image == null){
+        alert("Please insert your profile image");
+        return false;
+    }
     if ((fname=  document.login.fname.value)==''){
         alert("Please enter letters only")
         document.getElementById('fname').style.borderColor="red";
@@ -26,7 +30,7 @@ function check_for_blank(){
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
-    if(radio_Arr = document.login.radio.value ==''){
+    if(radio_Arr = document.login.gender.value ==''){
         alert("please select gender");
         return false;
     }
@@ -35,7 +39,7 @@ function check_for_blank(){
         document.getElementById('address').style.borderColor="red";
         return false;
     }
-    if (fname==''||lname==''||address==''||pwd==''||radio_Arr== null||uname==''||image == ''){
+    if (fname==''||lname==''||address==''||pwd==''||radio_Arr== null||uname==''||image == null){
         return false;
     }
     //Gender selection
