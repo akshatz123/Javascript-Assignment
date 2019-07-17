@@ -111,8 +111,8 @@ function filter_by_date(){
   var endDate = document.getElementById("edate").value;
   var newsDate=new Date(startDate);
   var dDate =new Date(endDate);
-  if(dDate <= newsDate){
-    alert ("Due date should be greater than start date");
+  if(dDate < newsDate){
+    alert ("End date should be greater than start date");
     return false;  
   }
     var filterByDate = todo_array.filter(function(searchtime){
@@ -131,7 +131,7 @@ function done(IdofElement){
   for(var index = 0; index < todo_array.length; index++)
   {
     if(todo_array[index].todo_id == IdofElement){
-      todoid = index;
+      todo_id = index;
       break;  
     }
   }  

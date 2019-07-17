@@ -10,14 +10,14 @@
     <script src="../JS Files/profile.js"></script>
     <title>Profile</title>
 </head>
-<body onload="viewProfile()">
+<body onload="view_profile()">
         <header>
                 <img src="../images/logo.jpeg" alt="Logo" id="logo"height="60px" width="60px;">Profile Page
-                <input type="button" value="Logout" class="profile" onclick="onSubmit()">
+                <input type="button" value="Logout" class="profile" onclick="on_submit()">
         </header>
         <form method="POST" name="profile">
         <img  src="../images/default.png" alt="default"  height="60px" width="60px" id="profile_picture"><br /><br />
-        <input type="file" id="changePic" onchange="changeProfilePicture();"disabled><br /><br />
+        <input type="file" id="change_pic" onchange="change_profile_picture();"disabled><br /><br />
         First Name <input type="text" placeholder="Enter first name"  id="fname"disabled><br/><br/>
         Last Name <input type="text" placeholder="Enter last name" id="lname" disabled><br/><br />
         Gender <input type="radio" name="gender" id="male" value="Male" disabled> Male

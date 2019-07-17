@@ -13,19 +13,17 @@ function logins(){
         pass = document.getElementById("pass").value;
         user = document.getElementById('uname').value;
         //username validation
-            var userreg = "[A-Za-z]";
-            var userresult = user.match(userreg);
-            if(!(userresult)){
+            var user_reg = "[A-Za-z]";
+            var user_result = user.match(user_reg);
+            if(!(user_result)){
                 document.getElementById("uname").style.borderColor= "Red";
-                alert("Please enter letters only");
                 return false;
             }
             // var passwdregex = '[a-zA-Z0-9|\W]';
-            var passwdregex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})";
-            var password_result = pass.match(passwdregex);
+            var passwd_regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})";
+            var password_result = pass.match(passwd_regex);
             if(!(password_result)){
                 document.getElementById("pass").style.borderColor= "Red";
-                alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
                 return false;
             }
             password_result = btoa(pass);

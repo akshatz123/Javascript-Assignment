@@ -4,7 +4,7 @@ var uname = '';
 var fname = '';
 var radio_Arr = '';
 var address = '';
-var image = sessionStorage.getItem("tempimgdata");
+var image = sessionStorage.getItem("temp_img_data");
 function check_for_blank(){
     if ((uname=  document.login.uname.value) ==''){
         alert("please enter only letters")
@@ -15,10 +15,10 @@ function check_for_blank(){
         document.getElementById('pass').style.borderColor="red";
         return false;
     }
-    if(image == null){
-        alert("Please insert your profile image");
-        return false;
-    }
+    // if(image == null){
+    //     alert("Please insert your profile image");
+    //     return false;
+    // }
     if ((fname=  document.login.fname.value)==''){
         alert("Please enter letters only")
         document.getElementById('fname').style.borderColor="red";
@@ -39,7 +39,7 @@ function check_for_blank(){
         document.getElementById('address').style.borderColor="red";
         return false;
     }
-    if (fname==''||lname==''||address==''||pwd==''||radio_Arr== null||uname==''||image == null){
+    if (fname==''||lname==''||address==''||pwd==''||radio_Arr== null||uname==''){
         return false;
     }
     //Gender selection
@@ -144,7 +144,7 @@ function check_for_blank(){
 
 //profile picture
 function changeProfilePicture(){
-    var Image =document.getElementById("changePic").files[0];
+    var Image =document.getElementById("change_pic").files[0];
     getimgbase64(Image);
     
     function getimgbase64(Image){
@@ -153,8 +153,8 @@ function changeProfilePicture(){
         reader.onload = function () {
         var imgdata = reader.result;
         // console.log(imgdata);
-        sessionStorage.setItem("tempimgdata",imgdata);
-        document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
+        sessionStorage.setItem("temp_img_data",imgdata);
+        document.getElementById("profile_picture").src = sessionStorage.temp_img_data;
         image = imgdata;
         };
         reader.onerror = function (error) {

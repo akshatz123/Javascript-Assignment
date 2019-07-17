@@ -12,7 +12,7 @@ for(var index = 0; index < user_array.length; index++){
   }
 }
 //Add function
-function newElement() {
+function new_element() {
     description= document.getElementById("description").value;
     if(description==''){
       alert("Please enter your description of Todo.");
@@ -120,7 +120,7 @@ function display_element(input_array){
     }
 }
 //Delete Function
-function onDelete(){
+function on_delete(){
   var checked_array=[];
   user_array= JSON.parse(localStorage.getItem("user_Details"));
   var deletearray = document.getElementsByName("rows");
@@ -147,12 +147,12 @@ function onDelete(){
     }
 
 //logout function
-function onSubmit(){
+function on_submit(){
   sessionStorage.clear();
   window.location="login.html";
 }
 //Redirects to Profile page
-function viewprofile(){
+function view_profile(){
   window.location.href='../html/profile.html';
 }
 

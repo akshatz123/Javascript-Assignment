@@ -1,7 +1,7 @@
 var user_array = JSON.parse(localStorage.getItem("user_Details"));
 var session = sessionStorage.user;
 var gender;
-var img = sessionStorage.getItem("tempimgdata");
+var img = sessionStorage.getItem("temp_img_data");
 //Function for radio button
 function getRadioVal() {
     if(document.getElementById("male").value.checked === "Male"){
@@ -23,7 +23,7 @@ function edit(){
     {
         document.getElementsByName("gender")[i].disabled = false;
     }
-    document.getElementById("changePic").disabled = false;
+    document.getElementById("change_pic").disabled = false;
 }
 
 function save(){
@@ -53,21 +53,21 @@ function save(){
     {
         document.getElementsByName("gender")[i].disabled = true;
     }
-    document.getElementById("changePic").disabled = true;
+    document.getElementById("change_pic").disabled = true;
 }
 //view profile
-function viewProfile(){
+function view_profile(){
         for(index = 0; index < user_array.length; index++){
             if(sessionStorage.user == user_array[index].userName){
                 document.getElementById("fname").value = user_array[index].firstName;
                 document.getElementById("lname").value = user_array[index].lastName;
                 document.getElementById("address").value = user_array[index].address;
-                radioArr =document.getElementsByName("gender");
-                if(radioArr[0].value == "Male" && user_array[index].gender === 'Male' ){
-                    radioArr[0].checked = true;
+                radio_arr =document.getElementsByName("gender");
+                if(radio_arr[0].value == "Male" && user_array[index].gender === 'Male' ){
+                    radio_arr[0].checked = true;
                 }
-                else if(radioArr[1].value == "Female" && user_array[index].gender === 'Female'){
-                    radioArr[1].checked = true;
+                else if(radio_arr[1].value == "Female" && user_array[index].gender === 'Female'){
+                    radio_arr[1].checked = true;
                 }
                 if(user_array[index].Image === null){
                     user_array[index].Image =document.getElementById("profile_picture").src;
@@ -77,8 +77,8 @@ function viewProfile(){
     }
 }
 //Profile pic
-function changeProfilePicture(){
-    var Image =document.getElementById("changePic").files[0];
+function change_profile_picture(){
+    var Image =document.getElementById("change_pic").files[0];
     getimgbase64(Image);
     function getimgbase64(Image)
     {
@@ -86,10 +86,11 @@ function changeProfilePicture(){
         reader.readAsDataURL(Image);
         reader.onload = function () {
         var imgdata =reader.result;
-        sessionStorage.setItem("tempimgdata",imgdata);
-        document.getElementById("profile_picture").src = sessionStorage.tempimgdata;
+        sessionStorage.setItem("temp_img_data",imgdata);
+        document.getElementById("profile_picture").src = sessionStorage.temp_img_data;
         Image = imgdata;
-        };
+    console.log("Image==>>" +imgdata);
+    };
         reader.onerror = function (error) {
         };    
     }
@@ -108,7 +109,7 @@ function todo(){
     window.location.href ="todo.html";
 }
 // Logout Button
-function onSubmit(){
+function on_submit(){
     sessionStorage.clear();
     window.location="login.html";
   }
