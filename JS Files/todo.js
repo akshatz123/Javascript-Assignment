@@ -1,13 +1,13 @@
 var  user_name, user, 
 duedate='', reminder='', categories='', is_public='';
-var user_array = JSON.parse(localStorage.getItem("user_Details"));
+var user_array = JSON.parse(localStorage.getItem("user_details"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
 var session = sessionStorage.user;
 
 for(var index = 0; index < user_array.length; index++){
-  if(session == user_array[index].userName)   // username found then break
+  if(session == user_array[index].user_name)   // username found then break
   {
-    var userid =index;
+    var user_id =index;
     break;
   }
 }
@@ -19,6 +19,18 @@ function new_element() {
       document.getElementById("description").style.borderColor = "red";
       return false;
     }
+    if(document.todo.categories.value == 'select'){
+      alert("Please select suitable category");
+      return false;
+      // document.getElementById("categories").style.borderColor ="red";
+    }
+    else{
+      categories=document.getElementById("categories").value;
+    }
+    if(is_public = document.todo.chooseone.value ==''){
+      alert("Please select whether your todoList  will be Public or private");
+      return false;
+  }
   today = new Date();
   if((new Date(document.getElementById("due_date").value).getTime() < today.getTime())||(document.getElementById("due_date").value === "")){
     document.getElementById("due_date").style.borderColor = "red";
@@ -38,19 +50,8 @@ function new_element() {
     }
   
     
-    if(document.todo.categories.value == 'select'){
-      alert("Please select any category");
-      return false;
-      // document.getElementById("categories").style.borderColor ="red";
-    }
-    else{
-      categories=document.getElementById("categories").value;
-    }
-    if(is_public = document.todo.chooseone.value ==''){
-      alert("Please select whether your data is Public");
-      return false;
-  }
-    todoid=new Date().getTime();
+
+    todo_id=new Date().getTime();
     is_public =  document.querySelector('input[name="chooseone"]:checked').value;
     pending = document.getElementById("pending").value;
     if(description==""||reminder==""||due_date==""||categories==null||is_public==null){
@@ -58,7 +59,7 @@ function new_element() {
       return false;
     }
     todo_obj = {
-      "todo_id" : todoid,
+      "todo_id" : todo_id,
       "Description" : description,
       "Reminder" : reminder,
       "Due_Date" : Due_Date,
@@ -77,7 +78,7 @@ function new_element() {
       break;
     }
   }
-  localStorage.setItem("user_Details",JSON.stringify(user_array));
+  localStorage.setItem("user_details",JSON.stringify(user_array));
 }
   function getRadioVal() {
     if(document.getElementsByName("radio").values === "Public"){
@@ -110,26 +111,30 @@ function display_element(input_array){
         document.getElementById("done-"+input_array[index].todo_id).style.display="none";
         document.getElementById("edit-"+input_array[index].todo_id).style.display = "none";
         document.getElementById("save-"+input_array[index].todo_id).style.display = "none";
+        
       }
       else
       {
+        document.getElementById("edit-"+input_array[index].todo_id).style.backgroundColor= "lightcoral";
         document.getElementById("done-"+input_array[index].todo_id).style.display="inline-block";
         document.getElementById("edit-"+input_array[index].todo_id).style.display="inline-block";
         document.getElementById("save-"+input_array[index].todo_id).style.display="inline-block";
+        document.getElementById("save-"+input_array[index].todo_id).style.backgroundColor="lightgreen";
+        document.getElementById("done-"+input_array[index].todo_id).style.backgroundColor="floralwhite";
       }
     }
 }
 //Delete Function
 function on_delete(){
   var checked_array=[];
-  user_array= JSON.parse(localStorage.getItem("user_Details"));
+  user_array= JSON.parse(localStorage.getItem("user_details"));
   var deletearray = document.getElementsByName("rows");
   for(var j = 0;j < deletearray.length;j++){
     todostring = deletearray[j].id;
-    todoid = todostring.split("-");
-    if(document.getElementById("checkbox-"+todoid[1]).checked == true)
+    todo_id = todostring.split("-");
+    if(document.getElementById("checkbox-"+todo_id[1]).checked == true)
     {
-      checked_array.push(todoid[1]);
+      checked_array.push(todo_id[1]);
     }
   }
   for(var i = checked_array.length-1;i>=0 ;i--)
@@ -142,7 +147,7 @@ function on_delete(){
     }
   }
 
-  localStorage.setItem("user_Details",JSON.stringify(user_array));
+  localStorage.setItem("user_details",JSON.stringify(user_array));
   window.location.reload();
     }
 
@@ -158,7 +163,7 @@ function view_profile(){
 
 // Immidiately Invoked function expression
 (function (){
-  if(sessionStorage.getItem("user") === null ){
+  if(sessionStorage.getItem("user_name") === null ){
       alert("Please login again to view your todo.");
       window.location.href = "login.html";
   }

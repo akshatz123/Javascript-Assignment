@@ -1,10 +1,10 @@
-var user_array = JSON.parse(localStorage.getItem("user_Details"));
-var session = sessionStorage.user;
+var user_array = JSON.parse(localStorage.getItem("user_details"));
+var session = sessionStorage.user_name;
 var status ="Pending"; 
-
+var eTodoId;
 for(var index = 0; index < user_array.length; index++)
 {
-  if(session == user_array[index].userName)   // username found then break
+  if(session == user_array[index].user_name)   // username found then break
   {
     userid = index;
     var todo_array = user_array[userid].ToDO;
@@ -19,14 +19,13 @@ function edit(IdofElement){
   var index;
   for(var index = 0; index < todo_array.length; index++){
     if(todo_array[index].todo_id == IdofElement){
-      todoid = index;
+      todo_id = index;
+      eTodoId = index;
+
       document.getElementById("description").value = todo_array[index].Description;
       document.getElementById("categories").value = todo_array[index].Categories;
       document.getElementById("due_date").value = todo_array[index].Due_Date;
       document.getElementById("reminder").value = todo_array[index].Reminder;
-      // for(var i=0;i < (document.getElementsByName("chooseone").length); i++){
-      //     document.getElementsByName("chooseone")[index].checked= todo_array[index].is_public;
-      //   }
       radioArr =document.getElementsByName("chooseone");
       if(radioArr[0].value == "Public" && todo_array[index].is_public === 'Public' ){
           radioArr[0].checked = true;
@@ -43,40 +42,45 @@ function edit(IdofElement){
 //Save ToDO
 function save(IdofElement){
   var index;
+  if(eTodoId == null){
+    return;
+  }
     for(index = 0; index < todo_array.length; index++){
       if(todo_array[index].todo_id == IdofElement){
-        todoid =index;
+        todo_id =index;
         break;
       }
     }
 
-    todo_array[todoid].Description =document.getElementById("description").value;
-    todo_array[todoid].Categories =document.getElementById("categories").value;
-    todo_array[todoid].Due_Date = document.getElementById("due_date").value;
-    todo_array[todoid].Reminder = document.getElementById("reminder").value;
+    todo_array[todo_id].Description =document.getElementById("description").value;
+    todo_array[todo_id].Categories =document.getElementById("categories").value;
+    todo_array[todo_id].Due_Date = document.getElementById("due_date").value;
+    todo_array[todo_id].Reminder = document.getElementById("reminder").value;
     for(let i = 0; i < (document.getElementsByName("chooseone").length);i++)
     {
         if (document.getElementsByName("chooseone")[i].checked) {
             todo_array[index].is_public = document.getElementsByName("chooseone")[i].value;
         }
     }
+
     user_array = JSON.stringify(user_array);
-    localStorage.setItem('user_Details',user_array);
+    localStorage.setItem('user_details',user_array);
+    eTodoId =null;
     window.location ='../html/todo.html';
    }    
 
 //Filter By Category
 function filter(){
-  if(document.getElementById("filterbycategories").value === "Category"){
+  if(document.getElementById("filter_by_categories").value === "Category"){
     display_element(todo_array);
   }
-  else if(document.getElementById("filterbycategories").value === "Office"){  
+  else if(document.getElementById("filter_by_categories").value === "Office"){  
         var filtered_array_by_category = todo_array.filter(function(searchoffice){
           return (searchoffice.Categories==="Office");
     })
     display_element(filtered_array_by_category);
   }
-  else if(document.getElementById("filterbycategories").value === "Personal")
+  else if(document.getElementById("filter_by_categories").value === "Personal")
   {    
     var filtered_array_by_category = todo_array.filter(function(searchoffice){
       return (searchoffice.Categories==="Personal");
@@ -137,7 +141,7 @@ function done(IdofElement){
   }  
   todo_array[index].is_done = "Done";
   user_array = JSON.stringify(user_array);
-  localStorage.setItem('user_Details',user_array);
+  localStorage.setItem('user_details',user_array);
   window.location.reload();
 }
 

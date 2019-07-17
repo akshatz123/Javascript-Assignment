@@ -1,4 +1,4 @@
-var user_array = JSON.parse(localStorage.getItem("user_Details"));
+var user_array = JSON.parse(localStorage.getItem("user_details"));
 var session = sessionStorage.user;
 var gender;
 var img = sessionStorage.getItem("temp_img_data");
@@ -28,9 +28,9 @@ function edit(){
 
 function save(){
     for(index = 0; index < user_array.length; index++){
-    if(sessionStorage.user == user_array[index].userName){
-        user_array[index].firstName = document.getElementById("fname").value;
-        user_array[index].lastName = document.getElementById("lname").value;
+    if(sessionStorage.user == user_array[index].user_name){
+        user_array[index].first_name = document.getElementById("fname").value;
+        user_array[index].last_name = document.getElementById("lname").value;
         user_array[index].address = document.getElementById("address").value;
         for(let i = 0; i < (document.getElementsByName("gender").length);i++)
         {
@@ -40,7 +40,7 @@ function save(){
         }
         user_array[index].Image = document.getElementById("profile_picture").src;
         user_array = JSON.stringify(user_array);
-        localStorage.setItem("user_Details",user_array);
+        localStorage.setItem("user_details",user_array);
         break;
         }
        
@@ -59,8 +59,8 @@ function save(){
 function view_profile(){
         for(index = 0; index < user_array.length; index++){
             if(sessionStorage.user == user_array[index].userName){
-                document.getElementById("fname").value = user_array[index].firstName;
-                document.getElementById("lname").value = user_array[index].lastName;
+                document.getElementById("fname").value = user_array[index].first_name;
+                document.getElementById("lname").value = user_array[index].last_name;
                 document.getElementById("address").value = user_array[index].address;
                 radio_arr =document.getElementsByName("gender");
                 if(radio_arr[0].value == "Male" && user_array[index].gender === 'Male' ){
@@ -89,7 +89,6 @@ function change_profile_picture(){
         sessionStorage.setItem("temp_img_data",imgdata);
         document.getElementById("profile_picture").src = sessionStorage.temp_img_data;
         Image = imgdata;
-    console.log("Image==>>" +imgdata);
     };
         reader.onerror = function (error) {
         };    
@@ -99,7 +98,7 @@ function change_profile_picture(){
 
 // Immidiately Invoked function expression
 (function (){
-    if(sessionStorage.getItem("user") === null ){
+    if(sessionStorage.getItem("user_name") === null ){
         window.location.href = "login.html";
         alert("Please login again to view your user_array.");
     }
