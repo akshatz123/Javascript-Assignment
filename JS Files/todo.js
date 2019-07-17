@@ -14,6 +14,7 @@ for(var index = 0; index < user_array.length; index++){
 function newElement() {
     description= document.getElementById("description").value;
     if(description==''){
+      alert("Please enter your description of Todo.");
       document.getElementById("description").style.borderColor = "red";
       return false;
     }
@@ -36,10 +37,14 @@ function newElement() {
     }
   
     
-    categories=document.getElementById("categories").value;
-    if(categories == ''){
+    if(document.getElementById("categories").value == ''){
+      alert("Please select any category");
       document.getElementById("categories").style.borderColor ="red";
     }
+    else{
+      categories=document.getElementById("categories").value;
+    }
+    
     todoid=new Date().getTime();
     isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
     pending = document.getElementById("pending").value;

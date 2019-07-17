@@ -7,6 +7,7 @@ var address = '';
 var image = sessionStorage.getItem("tempimgdata");
 function check_for_blank(){
     if ((uname=  document.login.uname.value) ==''){
+        alert("please enter only letters")
         document.getElementById('uname').style.borderColor="red";
         return false;
     }
@@ -15,18 +16,22 @@ function check_for_blank(){
         return false;
     }
     if ((fname=  document.login.fname.value)==''){
+        alert("Please enter letters only")
         document.getElementById('fname').style.borderColor="red";
         return false;
     }
     
     if ((lname = document.login.lname.value) ==''){
+        alert("Please enter letters only ")
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
     if(radio_Arr = document.login.radio.value ==''){
+        alert("please select gender");
         return false;
     }
     if ((address = document.login.address.value) ==''){
+        alert("Please enter your address");
         document.getElementById('address').style.borderColor="red";
         return false;
     }
@@ -47,7 +52,9 @@ function check_for_blank(){
     var add =document.getElementById('address').value;
     var address_result=add;
     if(!(address_result)){
+        
         document.getElementById("address").style.borderColor= "Red";
+
         return false;
     }
 
@@ -56,6 +63,7 @@ function check_for_blank(){
     var name_regex = '^[a-zA-Z]+$';
     var fname_result= fname.match(name_regex);
     if(!(fname_result)){
+        alert("Please enter letters only");
         document.getElementById("fname").style.borderColor= "Red";
         return false;
     }
@@ -64,6 +72,7 @@ function check_for_blank(){
     lname = document.getElementById('lname').value;
     var lname_result = lname.match(name_regex);
     if(!(lname_result)){
+        alert("Please enter letters only");
         document.getElementById("lname").style.borderColor= "Red";
         return false;
     }
@@ -84,6 +93,7 @@ function check_for_blank(){
     var userreg = '^[A-Za-z]+$';
     var userresult = user.match(userreg);
     if(!(userresult)){
+        alert("Please enter letters only");
         document.getElementById("uname").style.borderColor= "Red";
         return false;
     }
