@@ -1,4 +1,5 @@
-var  user_name, user, duedate, reminder, categories, isPublic, todoObj;
+var  user_name, user, 
+duedate='', reminder='', categories='', is_public='';
 var user_array = JSON.parse(localStorage.getItem("user_Details"));
 user_name = sessionStorage.getItem("user"); //fetch data from session storage
 var session = sessionStorage.user;
@@ -37,36 +38,42 @@ function newElement() {
     }
   
     
-    if(document.getElementById("categories").value == ''){
+    if(document.todo.categories.value == 'select'){
       alert("Please select any category");
-      document.getElementById("categories").style.borderColor ="red";
+      return false;
+      // document.getElementById("categories").style.borderColor ="red";
     }
     else{
       categories=document.getElementById("categories").value;
     }
-    
+    if(is_public = document.todo.chooseone.value ==''){
+      alert("Please select whether your data is Public");
+      return false;
+  }
     todoid=new Date().getTime();
-    isPublic =  document.querySelector('input[name="chooseone"]:checked').value;
+    is_public =  document.querySelector('input[name="chooseone"]:checked').value;
     pending = document.getElementById("pending").value;
-    todoObj = {
-      "TodoId" : todoid,
+    if(description==""||reminder==""||due_date==""||categories==null||is_public==null){
+      alert("Please fill all the fields marked with *");
+      return false;
+    }
+    todo_obj = {
+      "todo_id" : todoid,
       "Description" : description,
       "Reminder" : reminder,
       "Due_Date" : Due_Date,
       "Categories" :categories,
-      "isPublic" : isPublic,
-      "isDone": pending
+      "is_public" : is_public,
+      "is_done": pending
   }
+ 
   window.location.reload();
-  if(description==""||reminder==""||due_date==""||categories==""||isPublic==""){
-     return false;
-  }
   
   for(var i = 0; i < user_array.length; i++)
   {
     if(user_name == user_array[i].userName)   // username found then break
     {
-      user_array[i].ToDO.push(todoObj);
+      user_array[i].ToDO.push(todo_obj);
       break;
     }
   }
@@ -74,15 +81,15 @@ function newElement() {
 }
   function getRadioVal() {
     if(document.getElementsByName("radio").values === "Public"){
-      isPublic = "Public";
+      is_public = "Public";
       }
     else if(document.getElementsByName("radio").values === "Private"){
-        isPublic = "Private";
+        is_public = "Private";
       }
-    return  isPublic;
+    return  is_public;
 }
 //Display function
-function display_element(inputArray){
+function display_element(input_array){
   let a=document.getElementById("table_body");
   let deleteChild=a.lastElementChild;
   while(deleteChild)
@@ -90,31 +97,31 @@ function display_element(inputArray){
   a.removeChild(deleteChild);
   deleteChild=a.lastElementChild;
   } 
-  for( var index = 0; index < inputArray.length; index++ ) {
+  for( var index = 0; index < input_array.length; index++ ) {
       var input= document.createElement("input");
       input.setAttribute("type", "checkbox");
       input.setAttribute("class", "selectedcheckbox"+index);
       var td1=document.createElement("tr");
-      var row = "<tr><td><input type ='checkbox' class='check' name='rows' id=checkbox-"+inputArray[index].TodoId+"></td><td>"+inputArray[index].Description+"</td><td>"+inputArray[index].Categories+"</td><td>"+inputArray[index].Due_Date+"</td><td>"+inputArray[index].Reminder+"</td><td>"+inputArray[index].isPublic  +"</td><td>"+inputArray[index].isDone+"</td><td><input type='button'  value='Done' id= done-"+inputArray[index].TodoId+" onclick = done("+inputArray[index].TodoId+")></td><td><input type = 'button' value = 'Edit' id = edit-"+inputArray[index].TodoId+" onclick=edit("+inputArray[index].TodoId+") /></td> <td><input type='button' value='Save'  id = save-"+inputArray[index].TodoId+" onclick=save("+inputArray[index].TodoId+")></td></tr>";
+      var row = "<tr><td><input type ='checkbox' class='check' name='rows' id=checkbox-"+input_array[index].todo_id+"></td><td>"+input_array[index].Description+"</td><td>"+input_array[index].Categories+"</td><td>"+input_array[index].Due_Date+"</td><td>"+input_array[index].Reminder+"</td><td>"+input_array[index].is_public  +"</td><td>"+input_array[index].is_done+"</td><td><input type='button'  value='Done' id= done-"+input_array[index].todo_id+" onclick = done("+input_array[index].todo_id+")></td><td><input type = 'button' value = 'Edit' id = edit-"+input_array[index].todo_id+" onclick=edit("+input_array[index].todo_id+") /></td> <td><input type='button' value='Save'  id = save-"+input_array[index].todo_id+" onclick=save("+input_array[index].todo_id+")></td></tr>";
       td1.innerHTML=row;
       var table_head = document.getElementById("table_body");
       table_head.appendChild(td1);
-      if(inputArray[index].isDone==="Done"){
-        document.getElementById("done-"+inputArray[index].TodoId).style.display="none";
-        document.getElementById("edit-"+inputArray[index].TodoId).style.display = "none";
-        document.getElementById("save-"+inputArray[index].TodoId).style.display = "none";
+      if(input_array[index].is_done==="Done"){
+        document.getElementById("done-"+input_array[index].todo_id).style.display="none";
+        document.getElementById("edit-"+input_array[index].todo_id).style.display = "none";
+        document.getElementById("save-"+input_array[index].todo_id).style.display = "none";
       }
       else
       {
-        document.getElementById("done-"+inputArray[index].TodoId).style.display="inline-block";
-        document.getElementById("edit-"+inputArray[index].TodoId).style.display="inline-block";
-        document.getElementById("save-"+inputArray[index].TodoId).style.display="inline-block";
+        document.getElementById("done-"+input_array[index].todo_id).style.display="inline-block";
+        document.getElementById("edit-"+input_array[index].todo_id).style.display="inline-block";
+        document.getElementById("save-"+input_array[index].todo_id).style.display="inline-block";
       }
     }
 }
 //Delete Function
 function onDelete(){
-  var checkedarray=[];
+  var checked_array=[];
   user_array= JSON.parse(localStorage.getItem("user_Details"));
   var deletearray = document.getElementsByName("rows");
   for(var j = 0;j < deletearray.length;j++){
@@ -122,21 +129,21 @@ function onDelete(){
     todoid = todostring.split("-");
     if(document.getElementById("checkbox-"+todoid[1]).checked == true)
     {
-      checkedarray.push(todoid[1]);
+      checked_array.push(todoid[1]);
     }
   }
-  for(var i = checkedarray.length-1;i>=0 ;i--)
+  for(var i = checked_array.length-1;i>=0 ;i--)
   {
     for(var j = 0;j < user_array[userid].ToDO.length;j++)
     {
-    if(user_array[userid].ToDO[j].TodoId == checkedarray[i]){
+    if(user_array[userid].ToDO[j].todo_id == checked_array[i]){
         user_array[userid].ToDO.splice(j, 1);
       }
     }
   }
 
-      localStorage.setItem("user_Details",JSON.stringify(user_array));
-      window.location.reload();
+  localStorage.setItem("user_Details",JSON.stringify(user_array));
+  window.location.reload();
     }
 
 //logout function

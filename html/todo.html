@@ -25,10 +25,10 @@
                     <option value="Office" id="office">Office</option>
                 </select>
                 Filter by Date(Due Date): 
-                Start Date <input type="date" value="newsDate" id="sdate" />
-                End Date <input type="date" value="dDate" id="edate" onchange="filterbyDate()"/>
+                Start Date <input type="date" value="newsDate" id="sdate"onchange="filter_by_Date()" />
+                End Date <input type="date" value="dDate" id="edate" onchange="filter_by_date()"/>
                 Filter by Status 
-                <select name= "status" value= "Select Status" id="filterbystatus" onchange="filterByStatus()">
+                <select name= "status" value= "Select Status" id="filterbystatus" onchange="filter_by_status()">
                     <option value="Status"id="status">Select Status</option>
                     <option value="Pending" id="pending">Pending</option>
                     <option value="Done" id="Done">Done</option>
@@ -36,18 +36,18 @@
                 <input type="reset" value="Reset" id="reset" onclick="reset_filter()">
             </form><br />
             <form method="POST" name="todo" class="todo">
-                Description<input type="text" placeholder="Enter todo list" id="description"><br /><br />
-                Category
+                Description*<input type="text" placeholder="Enter todo list" id="description"required><br /><br />
+                Category*
                 <select name="categories" value="Select Category" id="categories"required>&nbsp;
-                    <option  id="select">Select Category</option>
+                    <option  value="select"id="select" >Select Category</option>
                     <option  value="Personal" id="personal">Personal</option>
                     <option  value="Office" id="office">Office</option>
                 </select><br /><br />
-                is Public <input type ="radio" name="chooseone" value="Public" id="radio">Yes 
-                        <input type ="radio" name="chooseone" value="Private"   id="radio1">No  <br /><br />
+                is Public* <input type ="radio" name="chooseone" value="Public" id="radio"required>Yes 
+                        <input type ="radio" name="chooseone" value="Private"   id="radio1"required>No  <br /><br />
                 
-                Due Date <input type="date" name="date" id="due_date"required><br /><br />
-                Reminder<input type="date" name="date" id="reminder"required><br /><br />
+                Due Date* <input type="date" name="date" id="due_date"required><br /><br />
+                Reminder*<input type="date" name="date" id="reminder"required><br /><br />
                 <ul id="myUL"></ul>
                 <input type="button" value="Add" id="Add" onclick="newElement()">
                 <input type="button" value="Delete" onclick="onDelete()"><br />
@@ -61,9 +61,9 @@
                     <td>Reminder</td>
                     <td>isPublic</td>
                     <td>isDone</td>
-                    <td>Select</td>
-                    <td>Select</td>
-                    <td>Select</td>
+                    <td>Staus Button</td>
+                    <td>Edit Button</td>
+                    <td>Save Button</td>
                     
                 </tr>   
             </thead>

@@ -7,7 +7,6 @@ function logins(){
 
         }
     });
-        
 }
     function validate(){
         isLoggedIn=false;
@@ -17,17 +16,16 @@ function logins(){
             var userreg = "[A-Za-z]";
             var userresult = user.match(userreg);
             if(!(userresult)){
-                alert("Please enter letters only");
                 document.getElementById("uname").style.borderColor= "Red";
+                alert("Please enter letters only");
                 return false;
             }
             // var passwdregex = '[a-zA-Z0-9|\W]';
             var passwdregex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})";
             var password_result = pass.match(passwdregex);
             if(!(password_result)){
-                alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
-
                 document.getElementById("pass").style.borderColor= "Red";
+                alert("Please enter a special character, a number, min 6 characters including small letters and capital letters");
                 return false;
             }
             password_result = btoa(pass);
@@ -37,6 +35,9 @@ function logins(){
             pwd = user_array[i].password;
             if(pwd === password_result){
                 break;
+            }
+            else{
+                document.getElementById("pass").style.borderColor = "red"
             }
         }
         var flag = false;
@@ -56,7 +57,6 @@ function logins(){
         }
 
         if (flag === false){
-            alert("Invalid Password/Username");
             // break;
         }
     }
