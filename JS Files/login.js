@@ -17,6 +17,7 @@ function logins(){
             var userreg = "[A-Za-z]";
             var userresult = user.match(userreg);
             if(!(userresult)){
+                alert("Please enter letters only");
                 document.getElementById("uname").style.borderColor= "Red";
                 return false;
             }
