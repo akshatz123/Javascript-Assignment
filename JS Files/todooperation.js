@@ -33,7 +33,6 @@ function edit(IdofElement){
       else if(radioArr[1].value == "Private" && todo_array[index].is_public === 'Private'){
           radioArr[1].checked = true;
       }
-
       break;
     }
     }  

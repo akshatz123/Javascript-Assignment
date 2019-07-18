@@ -22,7 +22,6 @@ function new_element() {
     if(document.todo.categories.value == 'select'){
       alert("Please select suitable category");
       return false;
-      // document.getElementById("categories").style.borderColor ="red";
     }
     else{
       categories=document.getElementById("categories").value;
@@ -115,6 +114,9 @@ function display_element(input_array){
       }
       else
       {
+        document.getElementById("done-"+input_array[index].todo_id).style.borderRadius = "9px";
+        document.getElementById("edit-"+input_array[index].todo_id).style.borderRadius = "9px";
+        document.getElementById("save-"+input_array[index].todo_id).style.borderRadius = "9px";
         document.getElementById("edit-"+input_array[index].todo_id).style.backgroundColor= "lightcoral";
         document.getElementById("done-"+input_array[index].todo_id).style.display="inline-block";
         document.getElementById("edit-"+input_array[index].todo_id).style.display="inline-block";
@@ -127,11 +129,17 @@ function display_element(input_array){
 //Delete Function
 function on_delete(){
   var checked_array=[];
+  if(checked_array.length == 0){
+    alert("Please select atleast one of the todo to  delete.")
+    return false;
+  }
   user_array= JSON.parse(localStorage.getItem("user_details"));
   var deletearray = document.getElementsByName("rows");
+
   for(var j = 0;j < deletearray.length;j++){
     todostring = deletearray[j].id;
     todo_id = todostring.split("-");
+    
     if(document.getElementById("checkbox-"+todo_id[1]).checked == true)
     {
       checked_array.push(todo_id[1]);
