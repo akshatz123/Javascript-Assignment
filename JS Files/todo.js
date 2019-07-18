@@ -129,10 +129,6 @@ function display_element(input_array){
 //Delete Function
 function on_delete(){
   var checked_array=[];
-  if(checked_array.length == 0){
-    alert("Please select atleast one of the todo to  delete.")
-    return false;
-  }
   user_array= JSON.parse(localStorage.getItem("user_details"));
   var deletearray = document.getElementsByName("rows");
 
