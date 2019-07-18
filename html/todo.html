@@ -17,24 +17,7 @@
                     <input type="button"  value="Profile" class="profile" onclick="view_profile()">
         </header>        
             <div class=center>
-            <form method= "POST" class = "filters">
-                Filter By Category 
-                <select name="categories" value="Select Category" id="filter_by_categories" onchange="filter()">
-                    <option  value="Category"id="category">Select Category</option>
-                    <option  value="Personal" id="personal">Personal</option>
-                    <option value="Office" id="office">Office</option>
-                </select>
-                Filter by Status 
-                <select name= "status" value= "Select Status" id="filter_by_status" onchange="filter_by_status()">
-                    <option value="Status"id="status">Select Status</option>
-                    <option value="Pending" id="pending">Pending</option>
-                    <option value="Done" id="Done">Done</option>
-                </select><br /><br /> 
-                Filter by Due Date: 
-                Start Date <input type="date" value="newsDate" id="sdate"onchange="filter_by_Date()" />
-                End Date <input type="date" value="dDate" id="edate" onchange="filter_by_date()"/>
-                <br /><br /><input type="reset" value="Reset" id="reset" onclick="reset_filter()">
-            </form><br />
+            <br />
             <form method="POST" name="todo" class="todo">
                 Description*<input type="text" placeholder="Enter todo list" id="description"required><br /><br />
                 Category*
@@ -51,6 +34,7 @@
                 <ul id="myUL"></ul>
                 <input type="button" value="Add" id="add" onclick="new_element()">
                 <input type="button" value="Delete" id="delete" onclick="on_delete()"><br /><br />
+                </form>
         <table id="todo_table" width="100%">
             <thead id ="table_head">
                 <tr>
@@ -69,7 +53,24 @@
             </thead>
             <tbody id="table_body" ></tbody>
         </table>
-</form>
+        <form method= "POST" class = "filters">
+            Filter By Category 
+            <select name="categories" value="Select Category" id="filter_by_categories" onchange="filter()">
+                <option  value="Category"id="category">Select Category</option>
+                <option  value="Personal" id="personal">Personal</option>
+                <option value="Office" id="office">Office</option>
+            </select>
+            Filter by Status 
+            <select name= "status" value= "Select Status" id="filter_by_status" onchange="filter_by_status()">
+                <option value="Status"id="status">Select Status</option>
+                <option value="Pending" id="pending">Pending</option>
+                <option value="Done" id="Done">Done</option>
+            </select><br /><br /> 
+            Filter by Due Date: 
+            Start Date <input type="date" value="newsDate" id="sdate"onchange="filter_by_Date()" />
+            End Date <input type="date" value="dDate" id="edate" onchange="filter_by_date()"/>
+            <br /><br /><input type="reset" value="Reset" id="reset" onclick="reset_filter()">
+        </form>
 </div>
 </body>
 </html>
