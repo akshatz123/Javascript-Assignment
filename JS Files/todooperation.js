@@ -89,10 +89,10 @@ function filter(){
 }
 
 function filter_by_status(){
-  if(document.getElementById("filterbystatus").value === "Status"){
+  if(document.getElementById("status_filter").value === "Status"){
     display_element(todo_array);
   }
- else if(document.getElementById("filterbystatus").value === "Pending")
+ else if(document.getElementById("status_filter").value === "Pending")
   {  
     var today = new Date();
     var filtered_array_by_status= todo_array.filter(function(searchstatus){
@@ -100,13 +100,13 @@ function filter_by_status(){
     })
     display_element(filtered_array_by_status);
   }
-else if(document.getElementById("filterbystatus").value === "Done")
-{    
-  var filtered_array_by_status= todo_array.filter(function(searchstatus){
-    return (searchstatus.is_done === "Done");
-  })
-  display_element(filtered_array_by_status);
-}
+  else if(document.getElementById("status_filter").value === "Done")
+  {    
+    var filtered_array_by_status= todo_array.filter(function(searchstatus){
+      return (searchstatus.is_done === "Done");
+    })
+    display_element(filtered_array_by_status);
+  }
 }
 //Filter by Date
 function filter_by_date(){
