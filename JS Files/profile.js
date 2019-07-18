@@ -28,7 +28,7 @@ function edit(){
 
 function save(){
     for(index = 0; index < user_array.length; index++){
-    if(sessionStorage.user == user_array[index].user_name){
+    if(sessionStorage.user_name == user_array[index].user_name){
         user_array[index].first_name = document.getElementById("fname").value;
         user_array[index].last_name = document.getElementById("lname").value;
         user_array[index].address = document.getElementById("address").value;
@@ -100,7 +100,7 @@ function change_profile_picture(){
 (function (){
     if(sessionStorage.getItem("user_name") === null ){
         window.location.href = "login.html";
-        alert("Please login again to view your user_array.");
+        alert("Please login again to view your details.");
     }
 })();
 // Todo Button
