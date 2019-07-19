@@ -74,7 +74,7 @@ function check_for_blank(){
     var lname_result = lname.match(name_regex);
     if(!(lname_result)){
         document.getElementById("lname").style.borderColor= "Red";
-        alert("Please enter letters only");
+        alert("Please enter your last name ");
         return false;
     }
 
@@ -119,7 +119,7 @@ function check_for_blank(){
             }
         }
         if (isUserExists) {
-           alert('user with same name already exists.');
+           alert('User with same name already exists.');
             document.getElementById('uname').value='';
             return false;
         }
