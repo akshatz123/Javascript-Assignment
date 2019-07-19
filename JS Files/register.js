@@ -7,22 +7,23 @@ var address = '';
 var image = sessionStorage.getItem("temp_img_data");
 function check_for_blank(){
     if ((uname=  document.login.uname.value) ==''){
-        alert("Please enter only letters")
+        alert("Please enter your username which contains only letters");
         document.getElementById('uname').style.borderColor="red";
         return false;
     }
     if ((pwd = document.login.pass.value)==''){
-        document.getElementById('pass').style.borderColor="red";
-        return false;
+      alert("Error: Password must be minimum six characters long with at least one capital letter, one numeric value , one special character");
+      document.getElementById('pass').style.borderColor="red";
+      return false;
     }
     if ((fname=  document.login.fname.value)==''){
-        alert("Please enter letters only")
+        alert("Please enter your first name");
         document.getElementById('fname').style.borderColor="red";
         return false;
     }
-    
+
     if ((lname = document.login.lname.value) ==''){
-        alert("Please enter letters only ")
+        alert("Please enter your last name");
         document.getElementById('lname').style.borderColor="red";
         return false;
     }
@@ -52,7 +53,7 @@ function check_for_blank(){
     var add =document.getElementById('address').value;
     var address_result=add;
     if(!(address_result)){
-        
+
         document.getElementById("address").style.borderColor= "Red";
 
         return false;
@@ -64,7 +65,7 @@ function check_for_blank(){
     var fname_result= fname.match(name_regex);
     if(!(fname_result)){
         document.getElementById("fname").style.borderColor= "Red";
-        alert("Please enter letters only");
+        alert("Please enter first name which contains letters only");
         return false;
     }
 
@@ -83,11 +84,11 @@ function check_for_blank(){
     var password_result = pwd.match(password_regex);
     if(!(password_result)){
         document.getElementById("pass").style.borderColor= "Red";
-        alert(" Error : Password must be minimum six characters long with at least one capital letter, one numeric value , one special character");
+        alert("Error: Password must be minimum six characters long with at least one capital letter, one numeric value , one special character");
         return false;
     }
     password_result = btoa(pwd);
-    
+
     //username validation
     var user =document.getElementById('uname').value;
     var user_reg = '^[A-Za-z]+$';
@@ -142,7 +143,7 @@ function check_for_blank(){
 function change_profile_picture(){
     var Image =document.getElementById("change_pic").files[0];
     getimgbase64(Image);
-    
+
     function getimgbase64(Image){
         var reader = new FileReader();
         reader.readAsDataURL(Image);
@@ -154,7 +155,7 @@ function change_profile_picture(){
         };
         reader.onerror = function (error) {
         };}
-    
+
 }
 // on click Registration
 function registration(){
