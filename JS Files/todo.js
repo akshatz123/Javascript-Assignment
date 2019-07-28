@@ -1,7 +1,7 @@
 var  user_name, user, 
 duedate='', reminder='', categories='', is_public='';
 var user_array = JSON.parse(localStorage.getItem("user_details"));
-user_name = sessionStorage.getItem("user"); //fetch data from session storage
+user_name = sessionStorage.getItem("user_name"); //fetch data from session storage
 var session = sessionStorage.user;
 
 for(var index = 0; index < user_array.length; index++){
@@ -67,28 +67,22 @@ function new_element() {
       "is_done": pending
   }
  
-  window.location.reload();
   
   for(var i = 0; i < user_array.length; i++)
   {
-    if(user_name == user_array[i].userName)   // username found then break
+    if(user_name == user_array[i].user_name)   // username found then break
     {
       user_array[i].ToDO.push(todo_obj);
+      // display_element(user_array[i]);
       break;
     }
   }
   localStorage.setItem("user_details",JSON.stringify(user_array));
+  window.location.reload();
 }
-  function getRadioVal() {
-    if(document.getElementsByName("radio").values === "Public"){
-      is_public = "Public";
-      }
-    else if(document.getElementsByName("radio").values === "Private"){
-        is_public = "Private";
-      }
-    return  is_public;
-}
+
 //Display function
+
 function display_element(input_array){
   let a=document.getElementById("table_body");
   let deleteChild=a.lastElementChild;

@@ -1,5 +1,5 @@
 var user_array = JSON.parse(localStorage.getItem("user_details"));
-var session = sessionStorage.user_name;
+var session = sessionStorage.user;
 var gender;
 var img = sessionStorage.getItem("temp_img_data");
 //Function for radio button
@@ -18,7 +18,7 @@ function edit(){
     document.getElementById("fname").disabled = false;
     document.getElementById("lname").disabled = false;
     document.getElementById("address").disabled = false;
-    document.getElementsByName("gender").disabled = false;
+    document.getElementsByName("gender").disabled = false;     
     for(let i=0;i<(document.getElementsByName("gender").length);i++)
     {
         document.getElementsByName("gender")[i].disabled = false;
@@ -27,8 +27,10 @@ function edit(){
 }
 
 function save(){
+    validation();
+    if(validation()){
     for(index = 0; index < user_array.length; index++){
-    if(session == user_array[index].user_name){
+    if(sessionStorage.user_name == user_array[index].user_name){
         user_array[index].first_name = document.getElementById("fname").value;
         user_array[index].last_name = document.getElementById("lname").value;
         user_array[index].address = document.getElementById("address").value;
@@ -43,22 +45,22 @@ function save(){
         localStorage.setItem("user_details",user_array);
         break;
         }
-
+       
     }
     document.getElementById("fname").disabled = true;
     document.getElementById("lname").disabled = true;
     document.getElementById("address").disabled = true;
-    document.getElementsByName("gender").disabled = true;
+    document.getElementsByName("gender").disabled = true;     
     for(let i=0;i<(document.getElementsByName("gender").length);i++)
     {
         document.getElementsByName("gender")[i].disabled = true;
     }
     document.getElementById("change_pic").disabled = true;
-}
+}}
 //view profile
 function view_profile(){
         for(index = 0; index < user_array.length; index++){
-            if(session == user_array[index].user_name){
+            if(sessionStorage.user == user_array[index].userName){
                 document.getElementById("fname").value = user_array[index].first_name;
                 document.getElementById("lname").value = user_array[index].last_name;
                 document.getElementById("address").value = user_array[index].address;
@@ -69,12 +71,11 @@ function view_profile(){
                 else if(radio_arr[1].value == "Female" && user_array[index].gender === 'Female'){
                     radio_arr[1].checked = true;
                 }
-                if(user_array[index].Image ===null){
-                    user_array[index].Image = document.getElementById("profile_picture").src;
+                if(user_array[index].Image === null){
+                    user_array[index].Image =document.getElementById("profile_picture").src;
                 }
-  document.getElementById("profile_picture").src = user_array[index].Image;
+                document.getElementById("profile_picture").src = user_array[index].Image;
         }
-
     }
 }
 //Profile pic
@@ -92,9 +93,9 @@ function change_profile_picture(){
         Image = imgdata;
     };
         reader.onerror = function (error) {
-        };
+        };    
     }
-
+        
 }
 
 // Immidiately Invoked function expression
