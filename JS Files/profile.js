@@ -78,25 +78,7 @@ function view_profile(){
         }
     }
 }
-//Profile pic
-function change_profile_picture(){
-    var Image =document.getElementById("change_pic").files[0];
-    getimgbase64(Image);
-    function getimgbase64(Image)
-    {
-        var reader = new FileReader();
-        reader.readAsDataURL(Image);
-        reader.onload = function () {
-        var imgdata =reader.result;
-        sessionStorage.setItem("temp_img_data",imgdata);
-        document.getElementById("profile_picture").src = sessionStorage.temp_img_data;
-        Image = imgdata;
-    };
-        reader.onerror = function (error) {
-        };    
-    }
-        
-}
+
 
 // Immidiately Invoked function expression
 (function (){
